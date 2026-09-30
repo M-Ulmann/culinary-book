@@ -1,4 +1,4 @@
-import { Trash, Pencil, TagIcon, Clock, MoonStar, Sun, Search } from "lucide-react";
+import { Trash, Pencil, Clock, MoonStar, Sun, Search, Tag } from "lucide-react";
 import Utensils from '@/public/utensils.png'
 import Image from "next/image";
 
@@ -97,20 +97,20 @@ export default function Home(){
 
         <div className="grid grid-cols-3 gap-10 ">
 
-          <div className="rounded-2xl outline-4 outline-red-500">
-            <div className="flex flex-row justify-between h-20 bg-blue-600 rounded-t-2xl px-5 py-3">
-              <div className="flex flex-row gap-2">
-                <p>IMG</p>
+          <div className="rounded-2xl outline-4 outline-red-500 hover:shadow-2xl hover:-translate-y-1.5 transition">
+            <div className="flex flex-row justify-between items-start h-20 bg-blue-600 rounded-t-2xl px-5 py-3">
+              <div className="flex flex-row gap-1 items-center bg-black/30 text-white px-3 py-1 rounded-md font-bold uppercase text-sm tracking-wider">
+                <Tag size={15}/>
                 <p>italian</p>
               </div>
 
-              <div className="flex flex-row items-start gap-5">
-                <button>
-                  <p>IMG</p>
+              <div className="flex flex-row gap-3 items-center bg-black/30 text-white px-2 py-1 rounded-md uppercase">
+                <button className="hover:text-amber-400">
+                  <Pencil size={20}/>
                 </button>
 
-                <button>
-                  <p>IMG</p>
+                <button className="hover:text-amber-400">
+                  <Trash size={20}/>
                 </button>
               </div>
             </div>
@@ -121,23 +121,23 @@ export default function Home(){
                 <h3 className="text-xl font-extrabold capitalize">
                   classic italian pasta carbonara
                 </h3>
-                <p>
+                <p className="text-gray-500 text-sm">
                   A traditional Roman pasta dish made with eggs, hard cheese, cured pork, and black pepper.
                 </p>
               </div>
 
               <div className="flex flex-row justify-between">
-                <div className="flex flex-row gap-3">
-                  <p>IMG</p>
+                <div className="flex flex-row gap-1 text-emerald-600 text-sm items-center font-bold">
+                  <Clock size={20}/>
                   <p>25 mins</p>
                 </div>
 
-                <p>
+                <p className="text-gray-400 text-sm font-bold">
                   5 ingredients
                 </p>
               </div>
 
-              <button className="bg-purple-400">
+              <button className="bg-black py-3 text-white font-bold uppercase tracking-wider rounded-xl text-sm hover:bg-emerald-600 transition">
                 view details
               </button>
             </section>
@@ -145,20 +145,20 @@ export default function Home(){
             
           </div>
 
-          <div className="rounded-2xl outline-4 outline-red-500">
-            <div className="flex flex-row justify-between h-20 bg-blue-600 rounded-t-2xl px-5 py-3">
-              <div className="flex flex-row gap-2">
-                <p>IMG</p>
+          <div className="rounded-2xl outline-4 outline-red-500 hover:shadow-2xl hover:-translate-y-1.5 transition">
+            <div className="flex flex-row justify-between items-start h-20 bg-blue-600 rounded-t-2xl px-5 py-3">
+              <div className="flex flex-row gap-1 items-center bg-black/30 text-white px-3 py-1 rounded-md font-bold uppercase text-sm tracking-wider">
+                <Tag size={15}/>
                 <p>italian</p>
               </div>
 
-              <div className="flex flex-row items-start gap-5">
-                <button>
-                  <p>IMG</p>
+              <div className="flex flex-row gap-3 items-center bg-black/30 text-white px-2 py-1 rounded-md uppercase">
+                <button className="hover:text-amber-400">
+                  <Pencil size={20}/>
                 </button>
 
-                <button>
-                  <p>IMG</p>
+                <button className="hover:text-amber-400">
+                  <Trash size={20}/>
                 </button>
               </div>
             </div>
@@ -169,23 +169,23 @@ export default function Home(){
                 <h3 className="text-xl font-extrabold capitalize">
                   classic italian pasta carbonara
                 </h3>
-                <p>
+                <p className="text-gray-500 text-sm">
                   A traditional Roman pasta dish made with eggs, hard cheese, cured pork, and black pepper.
                 </p>
               </div>
 
               <div className="flex flex-row justify-between">
-                <div className="flex flex-row gap-3">
-                  <p>IMG</p>
+                <div className="flex flex-row gap-1 text-emerald-600 text-sm items-center font-bold">
+                  <Clock size={20}/>
                   <p>25 mins</p>
                 </div>
 
-                <p>
+                <p className="text-gray-400 text-sm font-bold">
                   5 ingredients
                 </p>
               </div>
 
-              <button className="bg-purple-400">
+              <button className="bg-black py-3 text-white font-bold uppercase tracking-wider rounded-xl text-sm hover:bg-emerald-600 transition">
                 view details
               </button>
             </section>
@@ -193,20 +193,20 @@ export default function Home(){
             
           </div>
 
-          <div className="rounded-2xl outline-4 outline-red-500">
-            <div className="flex flex-row justify-between h-20 bg-blue-600 rounded-t-2xl px-5 py-3">
-              <div className="flex flex-row gap-2">
-                <p>IMG</p>
+          <div className="rounded-2xl outline-4 outline-red-500 hover:shadow-2xl hover:-translate-y-1.5 transition">
+            <div className="flex flex-row justify-between items-start h-20 bg-blue-600 rounded-t-2xl px-5 py-3">
+              <div className="flex flex-row gap-1 items-center bg-black/30 text-white px-3 py-1 rounded-md font-bold uppercase text-sm tracking-wider">
+                <Tag size={15}/>
                 <p>italian</p>
               </div>
 
-              <div className="flex flex-row items-start gap-5">
-                <button>
-                  <p>IMG</p>
+              <div className="flex flex-row gap-3 items-center bg-black/30 text-white px-2 py-1 rounded-md uppercase">
+                <button className="hover:text-amber-400">
+                  <Pencil size={20}/>
                 </button>
 
-                <button>
-                  <p>IMG</p>
+                <button className="hover:text-amber-400">
+                  <Trash size={20}/>
                 </button>
               </div>
             </div>
@@ -217,23 +217,23 @@ export default function Home(){
                 <h3 className="text-xl font-extrabold capitalize">
                   classic italian pasta carbonara
                 </h3>
-                <p>
+                <p className="text-gray-500 text-sm">
                   A traditional Roman pasta dish made with eggs, hard cheese, cured pork, and black pepper.
                 </p>
               </div>
 
               <div className="flex flex-row justify-between">
-                <div className="flex flex-row gap-3">
-                  <p>IMG</p>
+                <div className="flex flex-row gap-1 text-emerald-600 text-sm items-center font-bold">
+                  <Clock size={20}/>
                   <p>25 mins</p>
                 </div>
 
-                <p>
+                <p className="text-gray-400 text-sm font-bold">
                   5 ingredients
                 </p>
               </div>
 
-              <button className="bg-purple-400">
+              <button className="bg-black py-3 text-white font-bold uppercase tracking-wider rounded-xl text-sm hover:bg-emerald-600 transition">
                 view details
               </button>
             </section>
@@ -241,20 +241,20 @@ export default function Home(){
             
           </div>
 
-          <div className="rounded-2xl outline-4 outline-red-500">
-            <div className="flex flex-row justify-between h-20 bg-blue-600 rounded-t-2xl px-5 py-3">
-              <div className="flex flex-row gap-2">
-                <p>IMG</p>
+          <div className="rounded-2xl outline-4 outline-red-500 hover:shadow-2xl hover:-translate-y-1.5 transition">
+            <div className="flex flex-row justify-between items-start h-20 bg-blue-600 rounded-t-2xl px-5 py-3">
+              <div className="flex flex-row gap-1 items-center bg-black/30 text-white px-3 py-1 rounded-md font-bold uppercase text-sm tracking-wider">
+                <Tag size={15}/>
                 <p>italian</p>
               </div>
 
-              <div className="flex flex-row items-start gap-5">
-                <button>
-                  <p>IMG</p>
+              <div className="flex flex-row gap-3 items-center bg-black/30 text-white px-2 py-1 rounded-md uppercase">
+                <button className="hover:text-amber-400">
+                  <Pencil size={20}/>
                 </button>
 
-                <button>
-                  <p>IMG</p>
+                <button className="hover:text-amber-400">
+                  <Trash size={20}/>
                 </button>
               </div>
             </div>
@@ -265,23 +265,23 @@ export default function Home(){
                 <h3 className="text-xl font-extrabold capitalize">
                   classic italian pasta carbonara
                 </h3>
-                <p>
+                <p className="text-gray-500 text-sm">
                   A traditional Roman pasta dish made with eggs, hard cheese, cured pork, and black pepper.
                 </p>
               </div>
 
               <div className="flex flex-row justify-between">
-                <div className="flex flex-row gap-3">
-                  <p>IMG</p>
+                <div className="flex flex-row gap-1 text-emerald-600 text-sm items-center font-bold">
+                  <Clock size={20}/>
                   <p>25 mins</p>
                 </div>
 
-                <p>
+                <p className="text-gray-400 text-sm font-bold">
                   5 ingredients
                 </p>
               </div>
 
-              <button className="bg-purple-400">
+              <button className="bg-black py-3 text-white font-bold uppercase tracking-wider rounded-xl text-sm hover:bg-emerald-600 transition">
                 view details
               </button>
             </section>
