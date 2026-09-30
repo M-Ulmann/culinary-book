@@ -1,4 +1,4 @@
-import { Trash, Pencil, TagIcon, Clock, MoonStar, Sun } from "lucide-react";
+import { Trash, Pencil, TagIcon, Clock, MoonStar, Sun, Search } from "lucide-react";
 import Utensils from '@/public/utensils.png'
 import Image from "next/image";
 
@@ -56,37 +56,42 @@ export default function Home(){
           </button>
         </div>
 
-        <div className="flex flex-row justify-between bg-gray-400 py-5 px-5 rounded-xl">
-          <div className="flex flex-row gap-5 bg-amber-300 p-2 rounded-lg">
-            <p>lupa</p>
-            <input type="text" />
+        <div className="flex flex-row justify-between bg-white py-5 px-5 rounded-xl outline-2 outline-gray-200">
+          <div className="flex flex-row gap-2 bg-gray-100 p-2 rounded-lg group-focus:bg-amber-700 outline-1 outline-gray-300 focus-within:ring-3 focus-within:ring-emerald-500">
+            <Search/>
+            <input 
+              className="outline-none w-70 focus:placeholder:text-transparent "
+              type="text"
+              placeholder="Search for recipes..."
+            />
           </div>
 
 
-          <div className="flex flex-row gap-5">
-            <button>
+          <div className="flex flex-row gap-3">
+            <button className="font-bold bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-xl text-sm transition capitalize">
               all
             </button>
 
-            <button>
+            <button className="font-bold bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-xl text-sm transition capitalize">
               italian
             </button>
 
-            <button>
+            <button className="font-bold bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-xl text-sm transition capitalize">
               breakfast
             </button>
 
-            <button>
+            <button className="font-bold bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-xl text-sm transition capitalize">
               asian
             </button>
 
-            <button>
-              salad
+            <button className="font-bold bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-xl text-sm transition capitalize">
+              japan
             </button>
 
-            <button>
-              snacks
+            <button className="font-bold bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-xl text-sm transition capitalize">
+              mexico
             </button>
+
           </div>
         </div>
 
