@@ -1,25 +1,38 @@
+import { Trash, Pencil, TagIcon, Clock, MoonStar, Sun } from "lucide-react";
+import Utensils from '@/public/utensils.png'
+import Image from "next/image";
+
 export default function Home(){
   return(
     <div className="bg-green-50 flex flex-col gap-10 min-h-dvh">
-      <header className="flex flex-row items-center justify-between h-20 bg-violet-100 border-b border-b-violet-300 px-80">
+      <header className="flex flex-row items-center justify-between h-20 bg-white/80 border-b border-b-green-200 px-80 fixed w-full backdrop-blur-lg">
         <div className="flex flex-row items-center gap-5">
 
-          <p>IMG</p>
+          <Image 
+            src={Utensils}
+            width={50}
+            height={50}
+            alt="utensils"
+          />
 
           <div>
-            <p>culinary</p>
-            <p>recipe book</p>
+            <p className="text-3xl font-extrabold bg-linear-to-r from-emerald-500 to-emerald-700 bg-clip-text text-transparent uppercase">
+              culinary
+            </p>
+            <p className="text-lg text-gray-400 tracking-widest">
+              recipe book
+            </p>
           </div>
         </div>
 
-        <button className="flex flex-row gap-2">
-          <p>IMG</p>
+        <button className="flex flex-row gap-2 px-3 py-2 rounded-xl outline-1 outline-gray-300 shadow-lg">
+          <MoonStar />
 
           dark mode
         </button>
       </header>
 
-      <main className="flex flex-col gap-10 mx-80">
+      <main className="flex flex-col gap-10 mx-80 mt-30">
         
         <div className="flex flex-row gap-10">
           <div className="flex flex-row justify-center px-20 py-12 bg-blue-400 flex-6/8 rounded-3xl">
@@ -70,6 +83,54 @@ export default function Home(){
         </div>
 
         <div className="grid grid-cols-3 gap-10 ">
+
+          <div className="rounded-2xl outline-4 outline-red-500">
+            <div className="flex flex-row justify-between h-20 bg-blue-600 rounded-t-2xl px-5 py-3">
+              <div className="flex flex-row gap-2">
+                <p>IMG</p>
+                <p>italian</p>
+              </div>
+
+              <div className="flex flex-row items-start gap-5">
+                <button>
+                  <p>IMG</p>
+                </button>
+
+                <button>
+                  <p>IMG</p>
+                </button>
+              </div>
+            </div>
+
+            <section className="flex flex-col p-7 gap-3">
+      
+              <div className="flex flex-col gap-2 pb-3 border-b border-b-gray-300 ">
+                <h3 className="text-xl font-extrabold capitalize">
+                  classic italian pasta carbonara
+                </h3>
+                <p>
+                  A traditional Roman pasta dish made with eggs, hard cheese, cured pork, and black pepper.
+                </p>
+              </div>
+
+              <div className="flex flex-row justify-between">
+                <div className="flex flex-row gap-3">
+                  <p>IMG</p>
+                  <p>25 mins</p>
+                </div>
+
+                <p>
+                  5 ingredients
+                </p>
+              </div>
+
+              <button className="bg-purple-400">
+                view details
+              </button>
+            </section>
+
+            
+          </div>
 
           <div className="rounded-2xl outline-4 outline-red-500">
             <div className="flex flex-row justify-between h-20 bg-blue-600 rounded-t-2xl px-5 py-3">
