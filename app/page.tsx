@@ -25,7 +25,7 @@ export default function Home(){
           </div>
         </div>
 
-        <button className="flex flex-row gap-2 px-3 py-2 rounded-xl outline-1 outline-gray-300 shadow-lg">
+        <button className="flex flex-row gap-2 px-3 py-2 rounded-xl outline-1 outline-gray-300 shadow-lg capitalize font-bold tracking-wide text-gray-600 text-sm hover:bg-blue-100 transition">
           <MoonStar />
 
           dark mode
@@ -35,16 +35,24 @@ export default function Home(){
       <main className="flex flex-col gap-10 mx-80 mt-30">
         
         <div className="flex flex-row gap-10">
-          <div className="flex flex-row justify-center px-20 py-12 bg-blue-400 flex-6/8 rounded-3xl">
-            <div className="flex flex-col items-center bg-green-400 px-20 py-5 rounded-xl">
-              <h1>culinary book</h1>
-              <p>your personal homemade recipe collection</p>
+          <div className="flex flex-row justify-center px-20 py-12 bg-[linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('/kitchen.jpg')] bg-size-[100%_350%] bg-position-[0px_300px] flex-6/8 rounded-3xl outline-5 outline-emerald-500">
+            <div className="flex flex-col items-center outline-5 outline-emerald-500 px-20 py-5 rounded-xl bg-black/80">
+              <h1 className="text-4xl font-extrabold uppercase tracking-widest text-white mb-2">
+                culinary book
+              </h1>
+              <p className="text-green-300 capitalize">
+                your personal homemade recipe collection
+              </p>
             </div>
           </div>
 
-          <button className="bg-amber-400 flex-2/8 rounded-3xl">
-            <p>IMG</p>
-            <p>add a recipe</p>
+          <button className="flex-2/8 flex flex-col items-center justify-center gap-5 rounded-3xl outline-5 outline-emerald-500/70 outline-dashed hover:outline-emerald-500 hover:bg-green-100 group">
+            <p className="text-6xl bg-emerald-500 px-4 rounded-xl text-white group-hover:scale-110 transition">
+              +
+            </p>
+            <p className="uppercase text-xl font-extrabold tracking-wider text-emerald-700">
+              add a recipe
+            </p>
           </button>
         </div>
 
