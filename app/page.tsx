@@ -18,7 +18,7 @@ export default function Home(){
 
       {createRecipe ? <div className="z-15 fixed inset-0 backdrop-blur-xs bg-black/50"></div> : ""}
       
-      <form className={clsx("flex flex-col w-175 z-20 self-center fixed top-15 p-10 rounded-2xl gap-7",
+      <form className={clsx("flex flex-col z-20 w-11/12 mx-5 self-center fixed top-15 p-10 rounded-2xl gap-7 md:w-175",
         createRecipe ? "flex" : "hidden",
         isDark ? "bg-gray-800" : "bg-white"
       )}>
@@ -45,7 +45,7 @@ export default function Home(){
         </div>
 
         <section className="flex flex-col gap-5 border-b-2 border-b-gray-400 pb-7">
-          <div className="flex flex-row gap-5">
+          <div className="flex flex-col gap-5 sm:flex-row">
             <div className="flex flex-col flex-1 gap-2">
               <p className={clsx("uppercase font-bold text-sm",
                 isDark ? "text-gray-400" : "text-gray-500"
@@ -77,7 +77,7 @@ export default function Home(){
             </div>
           </div>
 
-          <div className="flex flex-row gap-5">
+          <div className="flex flex-col gap-5 sm:flex-row">
             <div className="flex flex-col flex-1 gap-2">
               <p className={clsx("uppercase font-bold text-sm",
                 isDark ? "text-gray-400" : "text-gray-500"
