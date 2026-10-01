@@ -1,11 +1,22 @@
+"use client"
+
 import { Trash, Pencil, Clock, MoonStar, Sun, Search, Tag, ArrowLeft, ArrowRight  } from "lucide-react";
 import Utensils from '@/public/utensils.png'
 import Image from "next/image";
+import { useState } from "react";
+import clsx from "clsx";
 
 export default function Home(){
+
+  const [isDark, setIsDark] = useState(false);
+
   return(
-    <div className="bg-green-50 flex flex-col gap-10 min-h-dvh">
-      <header className="flex flex-row items-center justify-between h-20 bg-white/80 border-b border-b-green-200 px-5 fixed w-full backdrop-blur-lg z-10 2xl:px-60 xl:px-30 md:px-10">
+    <div className={clsx("flex flex-col gap-10 min-h-dvh transition",
+      isDark ? "bg-gray-800" : "bg-green-50"
+    )}>
+      <header className={clsx("flex flex-row items-center justify-between h-20 border-b px-5 fixed w-full backdrop-blur-lg z-10 2xl:px-60 xl:px-30 md:px-10",
+        isDark ? "bg-gray-700/80" : "bg-white/80 border-b-green-200"
+      )}>
         <div className="flex flex-row items-center gap-5">
 
           <Image 
@@ -25,11 +36,16 @@ export default function Home(){
           </div>
         </div>
 
-        <button className="flex flex-row gap-2 px-3 py-2 rounded-xl outline-1 outline-gray-300 shadow-lg capitalize font-bold tracking-wide text-gray-600 text-sm hover:bg-blue-100 transition">
-          <MoonStar />
+        <button className={clsx("flex flex-row gap-2 px-3 py-2 rounded-xl outline-1 outline-gray-300 bg-white shadow-lg capitalize font-bold tracking-wide text-purple-800 text-sm hover:bg-blue-100 transition",
+          isDark ? "text-yellow-500" : "text-purple-800"
+        )}
+          onClick={() => {setIsDark(!isDark)}}
+        >
+          
+          {isDark ? <Sun /> : <MoonStar />}
 
           <span className=" hidden sm:inline-block">
-            Dark Mode
+            {isDark ? "Light Mode" : "Dark mode"}
           </span>
         </button>
       </header>
@@ -48,18 +64,26 @@ export default function Home(){
             </div>
           </div>
 
-          <button className="flex-2/8 flex flex-col py-10 lg:py-0 items-center justify-center gap-5 rounded-3xl outline-5 outline-emerald-500/70 outline-dashed hover:outline-emerald-500 hover:bg-green-100 group">
-            <p className="text-6xl bg-emerald-500 px-4 rounded-xl text-white group-hover:scale-110 transition">
+          <button className={clsx("flex-2/8 flex flex-col py-10 lg:py-0 items-center justify-center gap-5 rounded-3xl outline-5 outline-emerald-500/70 outline-dashed hover:outline-emerald-500 transition group",
+            isDark ? "hover:bg-gray-700" : "hover:bg-green-100"
+          )}>
+            <p className={clsx("text-6xl bg-emerald-500 px-4 rounded-xl text-white group-hover:scale-110 transition")}>
               +
             </p>
-            <p className="uppercase text-xl font-extrabold tracking-wider text-emerald-700">
+            <p className={clsx("uppercase text-xl font-extrabold tracking-wider ",
+              isDark ? "text-emerald-500" : "text-emerald-700"
+            )}>
               add a recipe
             </p>
           </button>
         </div>
 
-        <div className="flex flex-col gap-5 justify-between bg-white py-5 px-5 rounded-xl outline-2 outline-gray-200 lg:flex-row lg:gap-2">
-          <div className="flex flex-row gap-2 bg-gray-100 p-2 rounded-lg group-focus:bg-amber-700 outline-1 outline-gray-300 focus-within:ring-3 focus-within:ring-emerald-500">
+        <div className={clsx("flex flex-col gap-5 justify-between py-5 px-5 rounded-xl outline-2 lg:flex-row lg:gap-2",
+          isDark ? "bg-gray-700 outline-gray-600" : "bg-white outline-gray-200"
+        )}>
+          <div className={clsx("flex flex-row gap-2 p-2 rounded-lg outline-1 outline-gray-300 focus-within:ring-3 focus-within:ring-emerald-500 focus-within:outline-0",
+            isDark ? "bg-slate-800 text-white" : "bg-gray-100 text-black"
+          )}>
             <Search/>
             <input 
               className="outline-none w-full focus:placeholder:text-transparent lg:w-70"
@@ -69,28 +93,42 @@ export default function Home(){
           </div>
 
 
-          <div className="flex flex-row justify-center gap-3 flex-wrap">
-            <button className="font-bold bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-xl text-sm transition capitalize">
+          <div className={clsx("flex flex-row justify-center gap-3 flex-wrap",
+            isDark ? "text-white" : "text-black"
+          )}>
+            <button className={clsx("font-bold px-3 py-1 rounded-xl text-sm transition capitalize",
+              isDark ? "bg-slate-900 hover:bg-slate-800" : "bg-gray-100 hover:bg-gray-200"
+            )}>
               all
             </button>
 
-            <button className="font-bold bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-xl text-sm transition capitalize">
+            <button className={clsx("font-bold px-3 py-1 rounded-xl text-sm transition capitalize",
+              isDark ? "bg-slate-900 hover:bg-slate-800" : "bg-gray-100 hover:bg-gray-200"
+            )}>
               italian
             </button>
 
-            <button className="font-bold bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-xl text-sm transition capitalize">
+            <button className={clsx("font-bold px-3 py-1 rounded-xl text-sm transition capitalize",
+              isDark ? "bg-slate-900 hover:bg-slate-800" : "bg-gray-100 hover:bg-gray-200"
+            )}>
               breakfast
             </button>
 
-            <button className="font-bold bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-xl text-sm transition capitalize">
+            <button className={clsx("font-bold px-3 py-1 rounded-xl text-sm transition capitalize",
+              isDark ? "bg-slate-900 hover:bg-slate-800" : "bg-gray-100 hover:bg-gray-200"
+            )}>
               asian
             </button>
 
-            <button className="font-bold bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-xl text-sm transition capitalize">
+            <button className={clsx("font-bold px-3 py-1 rounded-xl text-sm transition capitalize",
+              isDark ? "bg-slate-900 hover:bg-slate-800" : "bg-gray-100 hover:bg-gray-200"
+            )}>
               japan
             </button>
 
-            <button className="font-bold bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-xl text-sm transition capitalize">
+            <button className={clsx("font-bold px-3 py-1 rounded-xl text-sm transition capitalize",
+              isDark ? "bg-slate-900 hover:bg-slate-800" : "bg-gray-100 hover:bg-gray-200"
+            )}>
               mexico
             </button>
 
@@ -99,7 +137,9 @@ export default function Home(){
 
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 sm:grid-cols-2">
 
-          <div className="rounded-2xl outline-4 outline-red-500 hover:shadow-2xl hover:-translate-y-1.5 transition">
+          <div className={clsx("rounded-2xl outline-4 outline-red-500 hover:shadow-2xl hover:-translate-y-1.5 transition",
+            isDark ? "bg-zinc-900" : "bg-white"
+          )}>
             <div className="flex flex-row justify-between items-start h-20 bg-blue-600 rounded-t-2xl px-5 py-3">
               <div className="flex flex-row gap-1 items-center bg-black/30 text-white px-3 py-1 rounded-md font-bold uppercase text-sm tracking-wider">
                 <Tag size={15}/>
@@ -120,16 +160,22 @@ export default function Home(){
             <section className="flex flex-col p-7 gap-3">
       
               <div className="flex flex-col gap-2 pb-3 border-b border-b-gray-300 ">
-                <h3 className="text-xl font-extrabold capitalize">
+                <h3 className={clsx("text-xl font-extrabold capitalize",
+                  isDark ? "text-white" : "text-black"
+                )}>
                   classic italian pasta carbonara
                 </h3>
-                <p className="text-gray-500 text-sm">
+                <p className={clsx("text-sm",
+                  isDark ? "text-gray-400" : "text-gray-500"
+                )}>
                   A traditional Roman pasta dish made with eggs, hard cheese, cured pork, and black pepper.
                 </p>
               </div>
 
               <div className="flex flex-row justify-between">
-                <div className="flex flex-row gap-1 text-emerald-600 text-sm items-center font-bold">
+                <div className={clsx("flex flex-row gap-1 text-sm items-center font-bold",
+                  isDark ? "text-emerald-400" : "text-emerald-600"
+                )}>
                   <Clock size={20}/>
                   <p>25 mins</p>
                 </div>
@@ -147,7 +193,9 @@ export default function Home(){
             
           </div>
 
-          <div className="rounded-2xl outline-4 outline-red-500 hover:shadow-2xl hover:-translate-y-1.5 transition">
+          <div className={clsx("rounded-2xl outline-4 outline-red-500 hover:shadow-2xl hover:-translate-y-1.5 transition",
+            isDark ? "bg-zinc-900" : "bg-white"
+          )}>
             <div className="flex flex-row justify-between items-start h-20 bg-blue-600 rounded-t-2xl px-5 py-3">
               <div className="flex flex-row gap-1 items-center bg-black/30 text-white px-3 py-1 rounded-md font-bold uppercase text-sm tracking-wider">
                 <Tag size={15}/>
@@ -168,16 +216,22 @@ export default function Home(){
             <section className="flex flex-col p-7 gap-3">
       
               <div className="flex flex-col gap-2 pb-3 border-b border-b-gray-300 ">
-                <h3 className="text-xl font-extrabold capitalize">
+                <h3 className={clsx("text-xl font-extrabold capitalize",
+                  isDark ? "text-white" : "text-black"
+                )}>
                   classic italian pasta carbonara
                 </h3>
-                <p className="text-gray-500 text-sm">
+                <p className={clsx("text-sm",
+                  isDark ? "text-gray-400" : "text-gray-500"
+                )}>
                   A traditional Roman pasta dish made with eggs, hard cheese, cured pork, and black pepper.
                 </p>
               </div>
 
               <div className="flex flex-row justify-between">
-                <div className="flex flex-row gap-1 text-emerald-600 text-sm items-center font-bold">
+                <div className={clsx("flex flex-row gap-1 text-sm items-center font-bold",
+                  isDark ? "text-emerald-400" : "text-emerald-600"
+                )}>
                   <Clock size={20}/>
                   <p>25 mins</p>
                 </div>
@@ -195,7 +249,9 @@ export default function Home(){
             
           </div>
 
-          <div className="rounded-2xl outline-4 outline-red-500 hover:shadow-2xl hover:-translate-y-1.5 transition">
+          <div className={clsx("rounded-2xl outline-4 outline-red-500 hover:shadow-2xl hover:-translate-y-1.5 transition",
+            isDark ? "bg-zinc-900" : "bg-white"
+          )}>
             <div className="flex flex-row justify-between items-start h-20 bg-blue-600 rounded-t-2xl px-5 py-3">
               <div className="flex flex-row gap-1 items-center bg-black/30 text-white px-3 py-1 rounded-md font-bold uppercase text-sm tracking-wider">
                 <Tag size={15}/>
@@ -216,16 +272,22 @@ export default function Home(){
             <section className="flex flex-col p-7 gap-3">
       
               <div className="flex flex-col gap-2 pb-3 border-b border-b-gray-300 ">
-                <h3 className="text-xl font-extrabold capitalize">
+                <h3 className={clsx("text-xl font-extrabold capitalize",
+                  isDark ? "text-white" : "text-black"
+                )}>
                   classic italian pasta carbonara
                 </h3>
-                <p className="text-gray-500 text-sm">
+                <p className={clsx("text-sm",
+                  isDark ? "text-gray-400" : "text-gray-500"
+                )}>
                   A traditional Roman pasta dish made with eggs, hard cheese, cured pork, and black pepper.
                 </p>
               </div>
 
               <div className="flex flex-row justify-between">
-                <div className="flex flex-row gap-1 text-emerald-600 text-sm items-center font-bold">
+                <div className={clsx("flex flex-row gap-1 text-sm items-center font-bold",
+                  isDark ? "text-emerald-400" : "text-emerald-600"
+                )}>
                   <Clock size={20}/>
                   <p>25 mins</p>
                 </div>
@@ -243,7 +305,9 @@ export default function Home(){
             
           </div>
 
-          <div className="rounded-2xl outline-4 outline-red-500 hover:shadow-2xl hover:-translate-y-1.5 transition">
+          <div className={clsx("rounded-2xl outline-4 outline-red-500 hover:shadow-2xl hover:-translate-y-1.5 transition",
+            isDark ? "bg-zinc-900" : "bg-white"
+          )}>
             <div className="flex flex-row justify-between items-start h-20 bg-blue-600 rounded-t-2xl px-5 py-3">
               <div className="flex flex-row gap-1 items-center bg-black/30 text-white px-3 py-1 rounded-md font-bold uppercase text-sm tracking-wider">
                 <Tag size={15}/>
@@ -264,16 +328,22 @@ export default function Home(){
             <section className="flex flex-col p-7 gap-3">
       
               <div className="flex flex-col gap-2 pb-3 border-b border-b-gray-300 ">
-                <h3 className="text-xl font-extrabold capitalize">
+                <h3 className={clsx("text-xl font-extrabold capitalize",
+                  isDark ? "text-white" : "text-black"
+                )}>
                   classic italian pasta carbonara
                 </h3>
-                <p className="text-gray-500 text-sm">
+                <p className={clsx("text-sm",
+                  isDark ? "text-gray-400" : "text-gray-500"
+                )}>
                   A traditional Roman pasta dish made with eggs, hard cheese, cured pork, and black pepper.
                 </p>
               </div>
 
               <div className="flex flex-row justify-between">
-                <div className="flex flex-row gap-1 text-emerald-600 text-sm items-center font-bold">
+                <div className={clsx("flex flex-row gap-1 text-sm items-center font-bold",
+                  isDark ? "text-emerald-400" : "text-emerald-600"
+                )}>
                   <Clock size={20}/>
                   <p>25 mins</p>
                 </div>
@@ -294,19 +364,27 @@ export default function Home(){
         </div>
 
         <footer className="flex flex-row gap-3 self-center text-2xl">
-          <button className=" p-3 rounded-xl hover:bg-emerald-500 hover:text-white transition">
+          <button className={clsx("p-3 rounded-xl hover:bg-emerald-500 hover:text-white transition",
+            isDark ? "text-white" : "text-black"
+          )}>
             <ArrowLeft/>
           </button>
 
-          <button className="bg-gray-200 py-2 px-4 rounded-xl hover:bg-emerald-100 transition">
+          <button className={clsx(" py-2 px-4 rounded-xl  transition",
+            isDark ? "bg-gray-700 hover:bg-emerald-800 text-white" : "bg-gray-200 hover:bg-emerald-100 text-black"
+          )}>
             1
           </button>
 
-          <button className="bg-gray-200 py-2 px-4 rounded-xl hover:bg-emerald-100 transition">
+          <button className={clsx(" py-2 px-4 rounded-xl  transition",
+            isDark ? "bg-gray-700 hover:bg-emerald-800 text-white" : "bg-gray-200 hover:bg-emerald-100 text-black"
+          )}>
             2
           </button>
 
-          <button className="p-3 rounded-xl hover:bg-emerald-500 hover:text-white transition">
+          <button className={clsx("p-3 rounded-xl hover:bg-emerald-500 hover:text-white transition",
+            isDark ? "text-white" : "text-black"
+          )}>
             <ArrowRight/>
           </button>
         </footer>
