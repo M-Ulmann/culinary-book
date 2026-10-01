@@ -5,7 +5,7 @@ import Image from "next/image";
 export default function Home(){
   return(
     <div className="bg-green-50 flex flex-col gap-10 min-h-dvh">
-      <header className="flex flex-row items-center justify-between h-20 bg-white/80 border-b border-b-green-200 px-80 fixed w-full backdrop-blur-lg">
+      <header className="flex flex-row items-center justify-between h-20 bg-white/80 border-b border-b-green-200 px-5 fixed w-full backdrop-blur-lg z-10 2xl:px-60 xl:px-30 md:px-10">
         <div className="flex flex-row items-center gap-5">
 
           <Image 
@@ -16,10 +16,10 @@ export default function Home(){
           />
 
           <div>
-            <p className="text-3xl font-extrabold bg-linear-to-r from-emerald-500 to-emerald-700 bg-clip-text text-transparent uppercase">
+            <p className="text-2xl font-extrabold bg-linear-to-r from-emerald-500 to-emerald-700 bg-clip-text text-transparent uppercase sm:text-3xl">
               culinary
             </p>
-            <p className="text-lg text-gray-400 tracking-widest">
+            <p className="text-md text-gray-400 tracking-widest sm:text-lg">
               recipe book
             </p>
           </div>
@@ -28,25 +28,27 @@ export default function Home(){
         <button className="flex flex-row gap-2 px-3 py-2 rounded-xl outline-1 outline-gray-300 shadow-lg capitalize font-bold tracking-wide text-gray-600 text-sm hover:bg-blue-100 transition">
           <MoonStar />
 
-          dark mode
+          <span className=" hidden sm:inline-block">
+            Dark Mode
+          </span>
         </button>
       </header>
 
-      <main className="flex flex-col gap-10 mx-80 mt-30">
+      <main className="flex flex-col gap-10 mt-30 mx-5 2xl:mx-60 xl:mx-30 md:mx-10">
         
-        <div className="flex flex-row gap-10">
+        <div className="flex flex-col gap-10 lg:flex-row">
           <div className="flex flex-row justify-center px-20 py-12 bg-[linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('/kitchen.jpg')] bg-size-[100%_350%] bg-position-[0px_300px] flex-6/8 rounded-3xl outline-5 outline-emerald-500">
-            <div className="flex flex-col items-center outline-5 outline-emerald-500 px-20 py-5 rounded-xl bg-black/80">
-              <h1 className="text-4xl font-extrabold uppercase tracking-widest text-white mb-2">
+            <div className="flex flex-col items-center outline-5 outline-emerald-500 rounded-xl px-5 py-3 bg-black/80 sm:px-20 sm:py-5">
+              <h1 className="text-2xl font-extrabold uppercase tracking-widest text-white text-center mb-2 sm:text-4xl">
                 culinary book
               </h1>
-              <p className="text-green-300 capitalize">
+              <p className="text-green-300 capitalize text-center text-sm sm:text-md">
                 your personal homemade recipe collection
               </p>
             </div>
           </div>
 
-          <button className="flex-2/8 flex flex-col items-center justify-center gap-5 rounded-3xl outline-5 outline-emerald-500/70 outline-dashed hover:outline-emerald-500 hover:bg-green-100 group">
+          <button className="flex-2/8 flex flex-col py-10 lg:py-0 items-center justify-center gap-5 rounded-3xl outline-5 outline-emerald-500/70 outline-dashed hover:outline-emerald-500 hover:bg-green-100 group">
             <p className="text-6xl bg-emerald-500 px-4 rounded-xl text-white group-hover:scale-110 transition">
               +
             </p>
@@ -56,18 +58,18 @@ export default function Home(){
           </button>
         </div>
 
-        <div className="flex flex-row justify-between bg-white py-5 px-5 rounded-xl outline-2 outline-gray-200">
+        <div className="flex flex-col gap-5 justify-between bg-white py-5 px-5 rounded-xl outline-2 outline-gray-200 lg:flex-row lg:gap-2">
           <div className="flex flex-row gap-2 bg-gray-100 p-2 rounded-lg group-focus:bg-amber-700 outline-1 outline-gray-300 focus-within:ring-3 focus-within:ring-emerald-500">
             <Search/>
             <input 
-              className="outline-none w-70 focus:placeholder:text-transparent "
+              className="outline-none w-full focus:placeholder:text-transparent lg:w-70"
               type="text"
               placeholder="Search for recipes..."
             />
           </div>
 
 
-          <div className="flex flex-row gap-3">
+          <div className="flex flex-row justify-center gap-3 flex-wrap">
             <button className="font-bold bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-xl text-sm transition capitalize">
               all
             </button>
@@ -95,7 +97,7 @@ export default function Home(){
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-10 ">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 sm:grid-cols-2">
 
           <div className="rounded-2xl outline-4 outline-red-500 hover:shadow-2xl hover:-translate-y-1.5 transition">
             <div className="flex flex-row justify-between items-start h-20 bg-blue-600 rounded-t-2xl px-5 py-3">
