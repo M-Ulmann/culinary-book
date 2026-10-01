@@ -1,4 +1,4 @@
-import { Trash, Pencil, Clock, MoonStar, Sun, Search, Tag } from "lucide-react";
+import { Trash, Pencil, Clock, MoonStar, Sun, Search, Tag, ArrowLeft, ArrowRight  } from "lucide-react";
 import Utensils from '@/public/utensils.png'
 import Image from "next/image";
 
@@ -291,25 +291,27 @@ export default function Home(){
 
         </div>
 
-        <footer className="flex flex-row gap-5 self-center">
-          <button>
-            <p>vlevo</p>
+        <footer className="flex flex-row gap-3 self-center text-2xl">
+          <button className=" p-3 rounded-xl hover:bg-emerald-500 hover:text-white transition">
+            <ArrowLeft/>
           </button>
 
-          <button>
-            <p>1</p>
+          <button className="bg-gray-200 py-2 px-4 rounded-xl hover:bg-emerald-100 transition">
+            1
           </button>
 
-          <button>
-            <p>2</p>
+          <button className="bg-gray-200 py-2 px-4 rounded-xl hover:bg-emerald-100 transition">
+            2
           </button>
 
-          <button>
-            <p>vpravo</p>
+          <button className="p-3 rounded-xl hover:bg-emerald-500 hover:text-white transition">
+            <ArrowRight/>
           </button>
         </footer>
 
       </main>
+
+    <div className="h-5"></div>
 
     </div>
   );
