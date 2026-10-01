@@ -18,18 +18,25 @@ export default function Home(){
 
       {createRecipe ? <div className="z-15 fixed inset-0 backdrop-blur-xs bg-black/50"></div> : ""}
       
-      <form className={clsx("flex flex-col w-175 z-20 self-center fixed bg-white top-15 p-10 rounded-2xl gap-7",
-        createRecipe ? "flex" : "hidden"
+      <form className={clsx("flex flex-col w-175 z-20 self-center fixed top-15 p-10 rounded-2xl gap-7",
+        createRecipe ? "flex" : "hidden",
+        isDark ? "bg-gray-800" : "bg-white"
       )}>
         <div className="flex flex-row items-center justify-between border-b-2 border-b-gray-400 pb-3">
-          <div className="flex flex-row gap-3 items-center text-emerald-600">
+          <div className={clsx("flex flex-row gap-3 items-center",
+            isDark ? "text-emerald-400" : "text-emerald-600"
+          )}>
             <UtensilsIcon />
-            <p className="font-extrabold text-2xl capitalize text-black tracking-tighter">
+            <p className={clsx("font-extrabold text-2xl capitalize text-black tracking-tighter",
+              isDark ? "text-white" : "text-black"
+            )}>
               create new recipe
             </p>
           </div>
 
-          <button className="p-2 hover:bg-emerald-50 rounded-full"
+          <button className={clsx("p-2 rounded-full",
+            isDark ? "hover:bg-slate-600 text-white" : "hover:bg-emerald-50 text-black"
+          )}
             onClick={() => {setCreateRecipe(false)}}
             type="button"
           >
@@ -40,22 +47,30 @@ export default function Home(){
         <section className="flex flex-col gap-5 border-b-2 border-b-gray-400 pb-7">
           <div className="flex flex-row gap-5">
             <div className="flex flex-col flex-1 gap-2">
-              <p className="uppercase font-bold text-sm text-gray-500">
+              <p className={clsx("uppercase font-bold text-sm",
+                isDark ? "text-gray-400" : "text-gray-500"
+              )}>
                 title
               </p>
               <input 
-                className="focus:outline-none outline-1 outline-emerald-600 bg-gray-100 w-full focus:placeholder:text-transparent focus-within:ring-3 focus-within:ring-emerald-500 rounded-md pl-2 py-3"
+                className={clsx("focus:outline-none outline-1 outline-emerald-600 w-full focus:placeholder:text-transparent focus-within:ring-3 focus-within:ring-emerald-500 rounded-md pl-2 py-3",
+                  isDark ? "bg-gray-700 text-white" : "bg-gray-100 text-black"
+                )}
                 type="text"
                 placeholder="e.g. Peanut Butter And Jelly"
               />
             </div>
 
             <div className="flex flex-col flex-1 gap-2">
-              <p className="uppercase font-bold text-sm text-gray-500">
+              <p className={clsx("uppercase font-bold text-sm",
+                isDark ? "text-gray-400" : "text-gray-500"
+              )}>
                 category
               </p>
               <input 
-                className="focus:outline-none outline-1 outline-emerald-600 bg-gray-100 w-full focus:placeholder:text-transparent focus-within:ring-3 focus-within:ring-emerald-500 rounded-md pl-2 py-3"
+                className={clsx("focus:outline-none outline-1 outline-emerald-600 w-full focus:placeholder:text-transparent focus-within:ring-3 focus-within:ring-emerald-500 rounded-md pl-2 py-3",
+                  isDark ? "bg-gray-700 text-white" : "bg-gray-100 text-black"
+                )}
                 type="text"
                 placeholder="e.g. Breakfast, Japanese, Vegetarian..."
               />
@@ -64,18 +79,24 @@ export default function Home(){
 
           <div className="flex flex-row gap-5">
             <div className="flex flex-col flex-1 gap-2">
-              <p className="uppercase font-bold text-sm text-gray-500">
+              <p className={clsx("uppercase font-bold text-sm",
+                isDark ? "text-gray-400" : "text-gray-500"
+              )}>
                 cook time
               </p>
               <input 
-                className="focus:outline-none outline-1 outline-emerald-600 bg-gray-100 w-full focus:placeholder:text-transparent focus-within:ring-3 focus-within:ring-emerald-500 rounded-md px-2 py-3"
+                className={clsx("focus:outline-none outline-1 outline-emerald-600 w-full focus:placeholder:text-transparent focus-within:ring-3 focus-within:ring-emerald-500 rounded-md pl-2 py-3",
+                  isDark ? "bg-gray-700 text-white" : "bg-gray-100 text-black"
+                )}
                 type="text"
                 placeholder="e.g. 20 mins, 3 hours..."
               />
             </div>
 
             <div className="flex flex-col flex-1 gap-4">
-              <p className="uppercase font-bold text-sm text-gray-500">
+              <p className={clsx("uppercase font-bold text-sm",
+                isDark ? "text-gray-400" : "text-gray-500"
+              )}>
                 card header color
               </p>
 
@@ -102,11 +123,15 @@ export default function Home(){
           </div>
 
           <div className="flex flex-col gap-2">
-            <p className="uppercase font-bold text-sm text-gray-500">
+              <p className={clsx("uppercase font-bold text-sm",
+                isDark ? "text-gray-400" : "text-gray-500"
+              )}>
               short description
             </p>
 
-            <textarea className="focus:outline-none outline-1 outline-emerald-600 bg-gray-100 w-full min-h-6 h-20 focus:placeholder:text-transparent focus-within:ring-3 focus-within:ring-emerald-500 rounded-md pl-2"
+            <textarea className={clsx("focus:outline-none outline-1 outline-emerald-600 bg-gray-100 w-full min-h-6 h-20 focus:placeholder:text-transparent focus-within:ring-3 focus-within:ring-emerald-500 rounded-md pl-2",
+              isDark ? "bg-gray-700 text-white" : "bg-gray-100 text-black"
+            )}
               name="description" 
               id="description"
               placeholder="Describe the dish by your own words..."
@@ -116,10 +141,15 @@ export default function Home(){
           </div>
 
           <div className="flex flex-col gap-2">
-            <p className="uppercase font-bold text-sm text-gray-500">
+            <p className={clsx("uppercase font-bold text-sm",
+                isDark ? "text-gray-400" : "text-gray-500"
+            )}>
               ingredients (1 per line)
             </p>
-            <textarea className="focus:outline-none outline-1 outline-emerald-600 bg-gray-100 w-full min-h-6 h-20 focus:placeholder:text-transparent focus-within:ring-3 focus-within:ring-emerald-500 rounded-md pl-2"
+
+            <textarea className={clsx("focus:outline-none outline-1 outline-emerald-600 bg-gray-100 w-full min-h-6 h-20 focus:placeholder:text-transparent focus-within:ring-3 focus-within:ring-emerald-500 rounded-md pl-2",
+              isDark ? "bg-gray-700 text-white" : "bg-gray-100 text-black"
+            )}
               name="ingredients" 
               id="ingredients"
               placeholder="5 liters water &#10;1 tsp salt &#10;5 kg potatoes"
@@ -128,10 +158,15 @@ export default function Home(){
           </div>
 
           <div className="flex flex-col gap-2">
-            <p className="uppercase font-bold text-sm text-gray-500">
+            <p className={clsx("uppercase font-bold text-sm",
+              isDark ? "text-gray-400" : "text-gray-500"
+            )}>
               instructions
             </p>
-            <textarea className="focus:outline-none outline-1 outline-emerald-600 bg-gray-100 w-full min-h-6 h-20 focus:placeholder:text-transparent focus-within:ring-3 focus-within:ring-emerald-500 rounded-md pl-2"
+            
+            <textarea className={clsx("focus:outline-none outline-1 outline-emerald-600 bg-gray-100 w-full min-h-6 h-20 focus:placeholder:text-transparent focus-within:ring-3 focus-within:ring-emerald-500 rounded-md pl-2",
+              isDark ? "bg-gray-700 text-white" : "bg-gray-100 text-black"
+            )}
               name="ingredients" 
               id="ingredients"
               placeholder="Step by step guide..."
@@ -141,7 +176,9 @@ export default function Home(){
         </section>
 
         <div className="flex flex-row justify-end gap-3">
-          <button className="font-bold outline-1 outline-gray-300 px-5 py-3 rounded-xl capitalize hover:bg-emerald-50"
+          <button className={clsx("font-bold outline-1 px-5 py-3 rounded-xl capitalize",
+            isDark ? "bg-gray-600 text-white outline-gray-400 hover:bg-gray-700" : "bg-white text-black outline-gray-300 hover:bg-emerald-50"
+          )}
             type="button"
             onClick={() => {setCreateRecipe(false)}}
           >
