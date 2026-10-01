@@ -1,6 +1,6 @@
 "use client"
 
-import { Trash, Pencil, Clock, MoonStar, Sun, Search, Tag, ArrowLeft, ArrowRight  } from "lucide-react";
+import { Trash, Pencil, Clock, MoonStar, Sun, Search, Tag, ArrowLeft, ArrowRight, UtensilsIcon, XIcon  } from "lucide-react";
 import Utensils from '@/public/utensils.png'
 import Image from "next/image";
 import { useState } from "react";
@@ -9,11 +9,126 @@ import clsx from "clsx";
 export default function Home(){
 
   const [isDark, setIsDark] = useState(false);
+  const [createRecipe, setCreateRecipe] = useState(false);
 
   return(
     <div className={clsx("flex flex-col gap-10 min-h-dvh transition",
       isDark ? "bg-gray-800" : "bg-green-50"
     )}>
+
+      <form className={clsx("flex flex-col w-150 z-20 backdrop-blur-2xl self-center fixed bg-amber-500 top-60 p-10",
+        createRecipe ? "flex" : "hidden"
+      )}>
+        <div className="flex flex-row items-center justify-between">
+          <div className="flex flex-row items-center">
+            <UtensilsIcon/>
+            <p className="font-bold text-2xl capitalize">
+              create new recipe
+            </p>
+          </div>
+
+          <button className=""
+            onClick={() => {setCreateRecipe(false)}}
+            type="button"
+          >
+            <XIcon/>
+          </button>
+        </div>
+
+        <section className="flex flex-col">
+          <div className="flex flex-row gap-5">
+            <div className="flex flex-col flex-1">
+              <p className="uppercase">
+                title
+              </p>
+              <input type="text" />
+            </div>
+
+            <div className="flex flex-col flex-1">
+              <p className="uppercase">
+                category
+              </p>
+              <input type="text" />
+            </div>
+          </div>
+
+          <div className="flex flex-row gap-5">
+            <div className="flex flex-col flex-1">
+              <p className="uppercase">
+                cook time
+              </p>
+              <input type="text" />
+            </div>
+
+            <div className="flex flex-col flex-1">
+              <p className="uppercase">
+                card header color
+              </p>
+
+              <div className="flex flex-row gap-5">
+
+                <button type="button">
+                  r
+                </button>
+
+                <button type="button">
+                  g
+                </button>
+
+                <button type="button">
+                  b
+                </button>
+
+              </div>
+
+            </div>
+          </div>
+
+          <div className="flex flex-col">
+            <p className="uppercase">
+              short description
+            </p>
+
+            <textarea name="description" id="description">
+
+            </textarea>
+          </div>
+
+          <div className="flex flex-col">
+            <p className="uppercase">
+              ingredients (1 per line)
+            </p>
+            <textarea name="ingredients" id="ingredients">
+              
+            </textarea>
+          </div>
+
+          <div className="flex flex-col uppercase">
+            <p className="uppercase">
+              instructions
+            </p>
+            <textarea name="instructions" id="instructions">
+              
+            </textarea>
+          </div>
+        </section>
+
+        <div className="flex flex-row justify-end gap-5">
+          <button
+            type="button"
+            onClick={() => {setCreateRecipe(false)}}
+          >
+            cancel
+          </button>
+
+          <button
+            type="button"
+          >
+            save recipe
+          </button>
+        </div>
+      </form>
+
       <header className={clsx("flex flex-row items-center justify-between h-20 border-b px-5 fixed w-full backdrop-blur-lg z-10 2xl:px-60 xl:px-30 md:px-10",
         isDark ? "bg-gray-700/80" : "bg-white/80 border-b-green-200"
       )}>
@@ -66,7 +181,9 @@ export default function Home(){
 
           <button className={clsx("flex-2/8 flex flex-col py-10 lg:py-0 items-center justify-center gap-5 rounded-3xl outline-5 outline-emerald-500/70 outline-dashed hover:outline-emerald-500 transition group",
             isDark ? "hover:bg-gray-700" : "hover:bg-green-100"
-          )}>
+          )}
+            onClick={() => {setCreateRecipe(true)}}
+          >
             <p className={clsx("text-6xl bg-emerald-500 px-4 rounded-xl text-white group-hover:scale-110 transition")}>
               +
             </p>
