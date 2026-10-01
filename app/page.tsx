@@ -18,7 +18,7 @@ export default function Home(){
 
       {createRecipe ? <div className="z-15 fixed inset-0 backdrop-blur-xs bg-black/50"></div> : ""}
       
-      <form className={clsx("flex flex-col z-20 w-11/12 mx-5 self-center fixed top-15 p-10 rounded-2xl gap-7 md:w-175",
+      <form className={clsx("flex flex-col z-20 w-11/12 max-h-11/12 overflow-y-scroll mx-5 self-center fixed top-1/2 -translate-y-1/2 p-10 rounded-2xl gap-7 md:w-175",
         createRecipe ? "flex" : "hidden",
         isDark ? "bg-gray-800" : "bg-white"
       )}>
@@ -27,7 +27,7 @@ export default function Home(){
             isDark ? "text-emerald-400" : "text-emerald-600"
           )}>
             <UtensilsIcon />
-            <p className={clsx("font-extrabold text-2xl capitalize text-black tracking-tighter",
+            <p className={clsx("font-extrabold text-2xl capitalize text-black tracking-tighter sm:text-left text-center",
               isDark ? "text-white" : "text-black"
             )}>
               create new recipe
@@ -40,7 +40,7 @@ export default function Home(){
             onClick={() => {setCreateRecipe(false)}}
             type="button"
           >
-            <XIcon size={25}/>
+            <XIcon className="sm:inline hidden" size={25}/>
           </button>
         </div>
 
