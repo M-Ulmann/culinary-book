@@ -10,13 +10,14 @@ export default function Home(){
 
   const [isDark, setIsDark] = useState(false);
   const [createRecipe, setCreateRecipe] = useState(false);
+  const [viewRecipe, setViewRecipe] = useState(false);
 
   return(
     <div className={clsx("flex flex-col gap-10 min-h-dvh transition",
       isDark ? "bg-gray-800" : "bg-green-50"
     )}>
 
-      {createRecipe ? <div className="z-15 fixed inset-0 backdrop-blur-xs bg-black/50"></div> : ""}
+      {createRecipe || viewRecipe ? <div className="z-15 fixed inset-0 backdrop-blur-xs bg-black/50"></div> : ""}
       
       <form className={clsx("flex flex-col z-20 w-11/12 max-h-11/12 overflow-y-scroll mx-5 self-center fixed top-1/2 -translate-y-1/2 p-10 rounded-2xl gap-7 md:w-175",
         createRecipe ? "flex" : "hidden",
@@ -366,7 +367,9 @@ export default function Home(){
                 </p>
               </div>
 
-              <button className="bg-black py-3 text-white font-bold uppercase tracking-wider rounded-xl text-sm hover:bg-emerald-600 transition">
+              <button className="bg-black py-3 text-white font-bold uppercase tracking-wider rounded-xl text-sm hover:bg-emerald-600 transition"
+                onClick={() => {setViewRecipe(true)}}
+              >
                 view details
               </button>
             </section>
@@ -543,6 +546,68 @@ export default function Home(){
           </div>
 
         </div>
+
+        {/* ukaze samotny recept */}
+        <section className={clsx("flex-col z-20 w-11/12 max-h-11/12 overflow-y-scroll mx-5 self-center bg-white fixed top-1/2 -translate-y-1/2 rounded-2xl gap-7 md:w-175",
+          viewRecipe ? "flex" : "hidden"
+        )}>
+
+          {/* tag a krizek */}
+          <div className="flex flex-row bg-red-400">
+            <p>
+              breakfast
+            </p>
+
+            <button 
+              onClick={() => {setViewRecipe(false)}}
+            >
+              <XIcon/>
+            </button>
+          </div>
+
+          <div className="flex flex-col gap-5 p-5">
+
+            {/* nazev a popisek */}
+            <div className="flex flex-col gap-3">
+              <h3 className="font-bold capitalize">
+                spicy avocado & egg toast
+              </h3>
+              <p className="">
+                Crispy sourdough toast topped with smashed avocado, poached eggs, and red chili flakes.
+              </p>
+            </div>
+
+            {/* ingredience */}
+            <div className="flex flex-col">
+              <h4 className="uppercase">
+                ingredients
+              </h4>
+
+              <ul className="grid grid-cols-2">
+                <li>2 slices sourdough</li>
+                <li>2 slices sourdough</li>
+                <li>2 slices sourdough</li>
+                <li>2 slices sourdough</li>
+                <li>2 slices sourdough</li>
+                <li>2 slices sourdough</li>
+              </ul>
+            </div>
+
+            {/* instrukce */}
+            <div className="flex flex-col">
+              <h4 className="uppercase">
+                instructions
+              </h4>
+
+              <p className="">
+                1. Toast sourdough slices.
+                2. Mash avocado with lemon, salt, and pepper.
+                3. Poach eggs in simmering water.
+                4. Assemble toast and garnish with chili.
+              </p>
+            </div>
+          </div>
+        </section>
 
         <footer className="flex flex-row gap-3 self-center text-2xl">
           <button className={clsx("p-3 rounded-xl hover:bg-emerald-500 hover:text-white transition",
