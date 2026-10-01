@@ -16,67 +16,84 @@ export default function Home(){
       isDark ? "bg-gray-800" : "bg-green-50"
     )}>
 
-      <form className={clsx("flex flex-col w-150 z-20 backdrop-blur-2xl self-center fixed bg-amber-500 top-60 p-10",
+      {createRecipe ? <div className="z-15 fixed inset-0 backdrop-blur-xs bg-black/50"></div> : ""}
+      
+      <form className={clsx("flex flex-col w-175 z-20 self-center fixed bg-white top-15 p-10 rounded-2xl gap-7",
         createRecipe ? "flex" : "hidden"
       )}>
-        <div className="flex flex-row items-center justify-between">
-          <div className="flex flex-row items-center">
-            <UtensilsIcon/>
-            <p className="font-bold text-2xl capitalize">
+        <div className="flex flex-row items-center justify-between border-b-2 border-b-gray-400 pb-3">
+          <div className="flex flex-row gap-3 items-center text-emerald-600">
+            <UtensilsIcon />
+            <p className="font-extrabold text-2xl capitalize text-black tracking-tighter">
               create new recipe
             </p>
           </div>
 
-          <button className=""
+          <button className="p-2 hover:bg-emerald-50 rounded-full"
             onClick={() => {setCreateRecipe(false)}}
             type="button"
           >
-            <XIcon/>
+            <XIcon size={25}/>
           </button>
         </div>
 
-        <section className="flex flex-col">
+        <section className="flex flex-col gap-5 border-b-2 border-b-gray-400 pb-7">
           <div className="flex flex-row gap-5">
-            <div className="flex flex-col flex-1">
-              <p className="uppercase">
+            <div className="flex flex-col flex-1 gap-2">
+              <p className="uppercase font-bold text-sm text-gray-500">
                 title
               </p>
-              <input type="text" />
+              <input 
+                className="focus:outline-none outline-1 outline-emerald-600 bg-gray-100 w-full focus:placeholder:text-transparent focus-within:ring-3 focus-within:ring-emerald-500 rounded-md pl-2 py-3"
+                type="text"
+                placeholder="e.g. Peanut Butter And Jelly"
+              />
             </div>
 
-            <div className="flex flex-col flex-1">
-              <p className="uppercase">
+            <div className="flex flex-col flex-1 gap-2">
+              <p className="uppercase font-bold text-sm text-gray-500">
                 category
               </p>
-              <input type="text" />
+              <input 
+                className="focus:outline-none outline-1 outline-emerald-600 bg-gray-100 w-full focus:placeholder:text-transparent focus-within:ring-3 focus-within:ring-emerald-500 rounded-md pl-2 py-3"
+                type="text"
+                placeholder="e.g. Breakfast, Japanese, Vegetarian..."
+              />
             </div>
           </div>
 
           <div className="flex flex-row gap-5">
-            <div className="flex flex-col flex-1">
-              <p className="uppercase">
+            <div className="flex flex-col flex-1 gap-2">
+              <p className="uppercase font-bold text-sm text-gray-500">
                 cook time
               </p>
-              <input type="text" />
+              <input 
+                className="focus:outline-none outline-1 outline-emerald-600 bg-gray-100 w-full focus:placeholder:text-transparent focus-within:ring-3 focus-within:ring-emerald-500 rounded-md px-2 py-3"
+                type="text"
+                placeholder="e.g. 20 mins, 3 hours..."
+              />
             </div>
 
-            <div className="flex flex-col flex-1">
-              <p className="uppercase">
+            <div className="flex flex-col flex-1 gap-4">
+              <p className="uppercase font-bold text-sm text-gray-500">
                 card header color
               </p>
 
-              <div className="flex flex-row gap-5">
+              <div className="flex flex-row gap-2">
 
-                <button type="button">
-                  r
+                <button className="bg-red-500 w-7 h-7 rounded-full hover:opacity-80"
+                  type="button"
+                >           
                 </button>
 
-                <button type="button">
-                  g
+                <button className="bg-green-500 w-7 h-7 rounded-full hover:opacity-80"
+                  type="button"
+                >
                 </button>
 
-                <button type="button">
-                  b
+                <button className="bg-blue-500 w-7 h-7 rounded-full hover:opacity-80"
+                  type="button"
+                >
                 </button>
 
               </div>
@@ -84,44 +101,54 @@ export default function Home(){
             </div>
           </div>
 
-          <div className="flex flex-col">
-            <p className="uppercase">
+          <div className="flex flex-col gap-2">
+            <p className="uppercase font-bold text-sm text-gray-500">
               short description
             </p>
 
-            <textarea name="description" id="description">
+            <textarea className="focus:outline-none outline-1 outline-emerald-600 bg-gray-100 w-full min-h-6 h-20 focus:placeholder:text-transparent focus-within:ring-3 focus-within:ring-emerald-500 rounded-md pl-2"
+              name="description" 
+              id="description"
+              placeholder="Describe the dish by your own words..."
+            >
 
             </textarea>
           </div>
 
-          <div className="flex flex-col">
-            <p className="uppercase">
+          <div className="flex flex-col gap-2">
+            <p className="uppercase font-bold text-sm text-gray-500">
               ingredients (1 per line)
             </p>
-            <textarea name="ingredients" id="ingredients">
-              
+            <textarea className="focus:outline-none outline-1 outline-emerald-600 bg-gray-100 w-full min-h-6 h-20 focus:placeholder:text-transparent focus-within:ring-3 focus-within:ring-emerald-500 rounded-md pl-2"
+              name="ingredients" 
+              id="ingredients"
+              placeholder="5 liters water &#10;1 tsp salt &#10;5 kg potatoes"
+            >
             </textarea>
           </div>
 
-          <div className="flex flex-col uppercase">
-            <p className="uppercase">
+          <div className="flex flex-col gap-2">
+            <p className="uppercase font-bold text-sm text-gray-500">
               instructions
             </p>
-            <textarea name="instructions" id="instructions">
-              
+            <textarea className="focus:outline-none outline-1 outline-emerald-600 bg-gray-100 w-full min-h-6 h-20 focus:placeholder:text-transparent focus-within:ring-3 focus-within:ring-emerald-500 rounded-md pl-2"
+              name="ingredients" 
+              id="ingredients"
+              placeholder="Step by step guide..."
+            >
             </textarea>
           </div>
         </section>
 
-        <div className="flex flex-row justify-end gap-5">
-          <button
+        <div className="flex flex-row justify-end gap-3">
+          <button className="font-bold outline-1 outline-gray-300 px-5 py-3 rounded-xl capitalize hover:bg-emerald-50"
             type="button"
             onClick={() => {setCreateRecipe(false)}}
           >
             cancel
           </button>
 
-          <button
+          <button className="font-bold bg-emerald-600 px-5 py-3 rounded-xl outline-2 outline-emerald-600 capitalize text-white hover:bg-white hover:text-emerald-600"
             type="button"
           >
             save recipe
@@ -165,7 +192,7 @@ export default function Home(){
         </button>
       </header>
 
-      <main className="flex flex-col gap-10 mt-30 mx-5 2xl:mx-60 xl:mx-30 md:mx-10">
+      <main className="flex flex-col gap-10 mt-30 mx-5 2xl:mx-60 xl:mx-30 md:mx-10 back">
         
         <div className="flex flex-col gap-10 lg:flex-row">
           <div className="flex flex-row justify-center px-20 py-12 bg-[linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('/kitchen.jpg')] bg-size-[100%_350%] bg-position-[0px_300px] flex-6/8 rounded-3xl outline-5 outline-emerald-500">
