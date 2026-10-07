@@ -1,0 +1,107 @@
+import clsx from "clsx";
+import { XIcon } from "lucide-react";
+import { Dispatch, SetStateAction } from "react";
+
+export default function ShowRecipe({isDark, setViewRecipe, viewRecipe} : {
+  isDark: boolean
+  setViewRecipe: Dispatch<SetStateAction<boolean>>
+  viewRecipe: boolean
+}){
+  return(
+    <section className={clsx("flex-col z-20 w-11/12 max-h-9/12 overflow-y-scroll mx-5 self-center bg-white fixed top-1/2 -translate-y-1/2 rounded-2xl md:w-175",
+      viewRecipe ? "flex" : "hidden"
+    )}>
+
+      {/* tag a krizek */}
+      <div className="flex flex-row bg-red-500 h-30 items-start justify-between p-5">
+
+        <p className="flex flex-row gap-1 items-center bg-black/30 text-white px-3 py-1 rounded-md font-bold uppercase text-sm tracking-wider">
+          breakfast
+        </p>
+
+        <button className="bg-black/40 text-white p-1.5 rounded-lg hover:bg-black/35"
+          onClick={() => {setViewRecipe(false)}}
+        >
+          <XIcon/>
+        </button>
+      </div>
+
+      <div className={clsx("flex flex-col gap-5 p-5",
+        isDark ? "bg-gray-800 text-white" : "bg-white text-black"
+      )}>
+
+        {/* nazev a popisek */}
+        <div className="flex flex-col gap-2">
+          <h3 className="font-extrabold capitalize text-3xl tracking-tighter">
+            spicy avocado & egg toast
+          </h3>
+          <p className={clsx("text-sm",
+            isDark ? "text-gray-400" : "text-gray-500"
+          )}>
+            Crispy sourdough toast topped with smashed avocado, poached eggs, and red chili flakes.
+          </p>
+        </div>
+
+        {/* ingredience */}
+        <div className="flex flex-col gap-3">
+          <h4 className={clsx("uppercase font-extrabold tracking-wider",
+            isDark ? "text-emerald-400" : "text-emerald-600"
+          )}>
+            ingredients
+          </h4>
+
+          <ul className="grid grid-cols-2 gap-3 list-disc list-inside marker:text-2xl ">
+            <li className={clsx("p-1 rounded-lg",
+              isDark ? "bg-slate-700 text-white marker:text-emerald-400" : "bg-emerald-50 text-gray-700 marker:text-emerald-600"
+            )}>
+              2 slices sourdough
+            </li>
+            <li className={clsx("p-1 rounded-lg",
+              isDark ? "bg-slate-700 text-white marker:text-emerald-400" : "bg-emerald-50 text-gray-700 marker:text-emerald-600"
+            )}>
+              2 slices sourdough
+            </li>
+            <li className={clsx("p-1 rounded-lg",
+              isDark ? "bg-slate-700 text-white marker:text-emerald-400" : "bg-emerald-50 text-gray-700 marker:text-emerald-600"
+            )}>
+              2 slices sourdough
+            </li>
+            <li className={clsx("p-1 rounded-lg",
+              isDark ? "bg-slate-700 text-white marker:text-emerald-400" : "bg-emerald-50 text-gray-700 marker:text-emerald-600"
+            )}>
+              2 slices sourdough
+            </li>
+            <li className={clsx("p-1 rounded-lg",
+              isDark ? "bg-slate-700 text-white marker:text-emerald-400" : "bg-emerald-50 text-gray-700 marker:text-emerald-600"
+            )}>
+              2 slices sourdough
+            </li>
+            <li className={clsx("p-1 rounded-lg",
+              isDark ? "bg-slate-700 text-white marker:text-emerald-400" : "bg-emerald-50 text-gray-700 marker:text-emerald-600"
+            )}>
+              2 slices sourdough
+            </li>
+          </ul>
+        </div>
+
+        {/* instrukce */}
+        <div className="flex flex-col gap-3">
+          <h4 className={clsx("uppercase font-extrabold tracking-wider",
+            isDark ? "text-emerald-400" : "text-emerald-600"
+          )}>
+            instructions
+          </h4>
+
+          <p className={clsx("p-5 outline-1 rounded-2xl leading-8",
+            isDark ? "bg-gray-700 outline-gray-500 text-white" : "bg-emerald-50 outline-gray-200 text-gray-600"
+          )}>
+            1. Toast sourdough slices. <br/>
+            2. Mash avocado with lemon, salt, and pepper. <br/>
+            3. Poach eggs in simmering water. <br/>
+            4. Assemble toast and garnish with chili. <br/>
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
