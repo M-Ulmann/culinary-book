@@ -319,7 +319,7 @@ export default function Home(){
 
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 sm:grid-cols-2">
 
-          <div className={clsx("rounded-2xl outline-4 outline-red-500 hover:shadow-2xl hover:-translate-y-1.5 transition",
+          <div className={clsx("rounded-2xl outline-4 outline-emerald-500 hover:shadow-2xl hover:-translate-y-1.5 transition",
             isDark ? "bg-zinc-900" : "bg-white"
           )}>
             <div className="flex flex-row justify-between items-start h-20 bg-blue-600 rounded-t-2xl px-5 py-3">
@@ -377,7 +377,7 @@ export default function Home(){
             
           </div>
 
-          <div className={clsx("rounded-2xl outline-4 outline-red-500 hover:shadow-2xl hover:-translate-y-1.5 transition",
+          <div className={clsx("rounded-2xl outline-4 outline-emerald-500 hover:shadow-2xl hover:-translate-y-1.5 transition",
             isDark ? "bg-zinc-900" : "bg-white"
           )}>
             <div className="flex flex-row justify-between items-start h-20 bg-blue-600 rounded-t-2xl px-5 py-3">
@@ -433,7 +433,7 @@ export default function Home(){
             
           </div>
 
-          <div className={clsx("rounded-2xl outline-4 outline-red-500 hover:shadow-2xl hover:-translate-y-1.5 transition",
+          <div className={clsx("rounded-2xl outline-4 outline-emerald-500 hover:shadow-2xl hover:-translate-y-1.5 transition",
             isDark ? "bg-zinc-900" : "bg-white"
           )}>
             <div className="flex flex-row justify-between items-start h-20 bg-blue-600 rounded-t-2xl px-5 py-3">
@@ -489,7 +489,7 @@ export default function Home(){
             
           </div>
 
-          <div className={clsx("rounded-2xl outline-4 outline-red-500 hover:shadow-2xl hover:-translate-y-1.5 transition",
+          <div className={clsx("rounded-2xl outline-4 outline-emerald-500 hover:shadow-2xl hover:-translate-y-1.5 transition",
             isDark ? "bg-zinc-900" : "bg-white"
           )}>
             <div className="flex flex-row justify-between items-start h-20 bg-blue-600 rounded-t-2xl px-5 py-3">
@@ -548,17 +548,18 @@ export default function Home(){
         </div>
 
         {/* ukaze samotny recept */}
-        <section className={clsx("flex-col z-20 w-11/12 max-h-11/12 overflow-y-scroll mx-5 self-center bg-white fixed top-1/2 -translate-y-1/2 rounded-2xl gap-7 md:w-175",
+        <section className={clsx("flex-col z-20 w-11/12 max-h-9/12 overflow-y-scroll mx-5 self-center bg-white fixed top-1/2 -translate-y-1/2 rounded-2xl md:w-175",
           viewRecipe ? "flex" : "hidden"
         )}>
 
           {/* tag a krizek */}
-          <div className="flex flex-row bg-red-400">
-            <p>
+          <div className="flex flex-row bg-red-500 h-30 items-start justify-between p-5">
+
+            <p className="flex flex-row gap-1 items-center bg-black/30 text-white px-3 py-1 rounded-md font-bold uppercase text-sm tracking-wider">
               breakfast
             </p>
 
-            <button 
+            <button className="bg-black/40 text-white p-1.5 rounded-lg"
               onClick={() => {setViewRecipe(false)}}
             >
               <XIcon/>
@@ -568,42 +569,54 @@ export default function Home(){
           <div className="flex flex-col gap-5 p-5">
 
             {/* nazev a popisek */}
-            <div className="flex flex-col gap-3">
-              <h3 className="font-bold capitalize">
+            <div className="flex flex-col gap-2">
+              <h3 className="font-extrabold capitalize text-3xl tracking-tighter">
                 spicy avocado & egg toast
               </h3>
-              <p className="">
+              <p className="text-gray-500 text-sm">
                 Crispy sourdough toast topped with smashed avocado, poached eggs, and red chili flakes.
               </p>
             </div>
 
             {/* ingredience */}
-            <div className="flex flex-col">
-              <h4 className="uppercase">
+            <div className="flex flex-col gap-3">
+              <h4 className="uppercase text-emerald-600 font-extrabold tracking-wider">
                 ingredients
               </h4>
 
-              <ul className="grid grid-cols-2">
-                <li>2 slices sourdough</li>
-                <li>2 slices sourdough</li>
-                <li>2 slices sourdough</li>
-                <li>2 slices sourdough</li>
-                <li>2 slices sourdough</li>
-                <li>2 slices sourdough</li>
+              <ul className="grid grid-cols-2 gap-3 list-disc list-inside marker:text-emerald-600 marker:text-2xl text-gray-700">
+                <li className="bg-emerald-50 p-1 rounded-lg">
+                  2 slices sourdough
+                </li>
+                <li className="bg-emerald-50 p-1 rounded-lg">
+                  2 slices sourdough
+                </li>
+                <li className="bg-emerald-50 p-1 rounded-lg">
+                  2 slices sourdough
+                </li>
+                <li className="bg-emerald-50 p-1 rounded-lg">
+                  2 slices sourdough
+                </li>
+                <li className="bg-emerald-50 p-1 rounded-lg">
+                  2 slices sourdough
+                </li>
+                <li className="bg-emerald-50 p-1 rounded-lg">
+                  2 slices sourdough
+                </li>
               </ul>
             </div>
 
             {/* instrukce */}
-            <div className="flex flex-col">
-              <h4 className="uppercase">
+            <div className="flex flex-col gap-3">
+              <h4 className="uppercase text-emerald-600 font-extrabold tracking-wider">
                 instructions
               </h4>
 
-              <p className="">
-                1. Toast sourdough slices.
-                2. Mash avocado with lemon, salt, and pepper.
-                3. Poach eggs in simmering water.
-                4. Assemble toast and garnish with chili.
+              <p className="p-5 bg-emerald-50 outline-1 outline-gray-200 rounded-2xl text-gray-600">
+                1. Toast sourdough slices. <br/>
+                2. Mash avocado with lemon, salt, and pepper. <br/>
+                3. Poach eggs in simmering water. <br/>
+                4. Assemble toast and garnish with chili. <br/>
               </p>
             </div>
           </div>
