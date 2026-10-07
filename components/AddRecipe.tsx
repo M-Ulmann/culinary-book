@@ -1,12 +1,14 @@
 import { UtensilsIcon, XIcon } from "lucide-react";
 import clsx from "clsx";
-import { SetStateAction, Dispatch } from "react";
+import { SetStateAction, Dispatch, useState } from "react";
+import { tagColor } from "@/lib/tagColor";
 
 export default function AddRecipe({createRecipe, setCreateRecipe, isDark} : {
   createRecipe: boolean
   setCreateRecipe: Dispatch<SetStateAction<boolean>>
   isDark: boolean
 }) {
+
   return(
     <form className={clsx("flex flex-col z-20 w-11/12 max-h-11/12 overflow-y-scroll mx-5 self-center fixed top-1/2 -translate-y-1/2 p-10 rounded-2xl gap-7 md:w-175",
       createRecipe ? "flex" : "hidden",
@@ -96,25 +98,20 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark} : {
               card header color
             </p>
 
-            <div className="flex flex-row gap-2">
-
-              <button className="bg-red-500 w-7 h-7 rounded-full hover:opacity-80"
-                type="button"
-              >           
-              </button>
-
-              <button className="bg-green-500 w-7 h-7 rounded-full hover:opacity-80"
-                type="button"
-              >
-              </button>
-
-              <button className="bg-blue-500 w-7 h-7 rounded-full hover:opacity-80"
-                type="button"
-              >
-              </button>
-
+            <div id="tagColor" className="flex flex-row gap-2">
+              {
+                tagColor.map((color, index) => {
+                  return(
+                    <button className={clsx("w-7 h-7 rounded-full hover:opacity-80",)}
+                    style={{backgroundColor: color}}
+                    type="button"
+                    key={index}
+                    >
+                    </button>
+                  );
+                })
+              }
             </div>
-
           </div>
         </div>
 
@@ -187,6 +184,7 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark} : {
 
         <button className="font-bold bg-emerald-600 px-5 py-3 rounded-xl outline-2 outline-emerald-600 capitalize text-white hover:bg-white hover:text-emerald-600"
           type="button"
+          onClick={() => {setCreateRecipe(false)}}
         >
           save recipe
         </button>
