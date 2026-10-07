@@ -9,6 +9,7 @@ import Sorter from "@/components/Sorter";
 import Recipe from "@/components/Recipe";
 import Footer from "@/components/Footer";
 import ShowRecipe from "@/components/ShowRecipe";
+import { recipeDetails } from "@/lib/recipeDetails";
 
 export default function Home(){
 
@@ -61,25 +62,17 @@ export default function Home(){
         {/* mrizka receptu */}
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 sm:grid-cols-2">
 
-          <Recipe
-            isDark={isDark}
-            setViewRecipe={setViewRecipe}
-          />
-
-          <Recipe
-            isDark={isDark}
-            setViewRecipe={setViewRecipe}
-          />
-
-          <Recipe
-            isDark={isDark}
-            setViewRecipe={setViewRecipe}
-          />
-
-          <Recipe
-            isDark={isDark}
-            setViewRecipe={setViewRecipe}
-          />
+          {
+            recipeDetails.map((item) => {
+              return(
+                <Recipe
+                  isDark={isDark}
+                  setViewRecipe={setViewRecipe}
+                  key={item.title}
+                />
+              );
+            })
+          }
 
         </div>
 
