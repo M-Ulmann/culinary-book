@@ -1,4 +1,4 @@
-import { UtensilsIcon, XIcon } from "lucide-react";
+import { UtensilsIcon, XIcon, Check } from "lucide-react";
 import clsx from "clsx";
 import { SetStateAction, Dispatch, useState } from "react";
 import { tagColor } from "@/lib/tagColor";
@@ -28,6 +28,7 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, form, 
   const [createTitle, setCreateTitle] = useState("");
   const [createCategory, setCreateCategory] = useState("");
   const [createCookTime, setCreateCookTime] = useState("");
+  const [selectedTag, setSelectedTag] = useState(0);
   const [createShortDesc, setCreateShortDesc] = useState("");
   const [createIngredients, setCreateIngredients] = useState("");
   const [createInstructions, setCreateInstructions] = useState("");
@@ -44,6 +45,7 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, form, 
     setCreateTitle("");
     setCreateCategory("");
     setCreateCookTime("");
+    setSelectedTag(0);
     setCreateShortDesc("");
     setCreateIngredients("");
     setCreateInstructions("");
@@ -169,11 +171,21 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, form, 
               {
                 tagColor.map((color, index) => {
                   return(
-                    <button className={clsx("w-7 h-7 rounded-full hover:opacity-80",)}
-                    style={{backgroundColor: color}}
-                    type="button"
-                    key={index}
+                    <button className={clsx("flex justify-center items-center w-7 h-7 rounded-full",
+                      selectedTag === index ? "opacity-70" : "opacity-100"
+                    )}
+                      style={{backgroundColor: color}}
+                      type="button"
+                      key={index}
+                      onClick={() => {
+                        setSelectedTag(index);
+                      }}
                     >
+                      {
+                        selectedTag === index ? 
+                        <Check size={20} className="text-white"/> :
+                        ""
+                      }
                     </button>
                   );
                 })
