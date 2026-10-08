@@ -16,14 +16,7 @@ export default function Home(){
   const [isDark, setIsDark] = useState(false);
   const [createRecipe, setCreateRecipe] = useState(false);
   const [viewRecipe, setViewRecipe] = useState(false);
-  const [form, setForm] = useState({
-    title: "",
-    category: "",
-    cook_time: "",
-    short_description: "",
-    ingredients: "",
-    instructions: ""
-  });
+  const [recipes, setRecipes] = useState(recipeDetails);
 
   return(
     <div className={clsx("flex flex-col gap-10 min-h-dvh transition",
@@ -38,8 +31,7 @@ export default function Home(){
         createRecipe={createRecipe}
         setCreateRecipe={setCreateRecipe}
         isDark={isDark}
-        form={form}
-        setForm={setForm}
+        setRecipes={setRecipes}
       />
 
       {/* ukaze samotny recept */}
@@ -73,7 +65,7 @@ export default function Home(){
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 sm:grid-cols-2">
 
           {
-            recipeDetails.map((item) => {
+            recipes.map((item) => {
               return(
                 <Recipe
                   isDark={isDark}

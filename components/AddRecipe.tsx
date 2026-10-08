@@ -3,27 +3,30 @@ import clsx from "clsx";
 import { SetStateAction, Dispatch, useState } from "react";
 import { tagColor } from "@/lib/tagColor";
 
-export default function AddRecipe({createRecipe, setCreateRecipe, isDark, form, setForm} : {
+export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRecipes} : {
   createRecipe: boolean
   setCreateRecipe: Dispatch<SetStateAction<boolean>>
   isDark: boolean
-  form: {
+  setRecipes: Dispatch<SetStateAction<{
     title: string;
     category: string;
     cook_time: string;
+    header_color: string;
     short_description: string;
     ingredients: string;
     instructions: string;
-  }
-  setForm: Dispatch<SetStateAction<{
-    title: string;
-    category: string;
-    cook_time: string;
-    short_description: string;
-    ingredients: string;
-    instructions: string;
-  }>>
+  }[]>>
 }) {
+
+  const [form, setForm] = useState({
+    title: "",
+    category: "",
+    cook_time: "",
+    header_color: "",
+    short_description: "",
+    ingredients: "",
+    instructions: ""
+  });
 
   const [createTitle, setCreateTitle] = useState("");
   const [createCategory, setCreateCategory] = useState("");
@@ -38,6 +41,7 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, form, 
       title: "",
       category: "",
       cook_time: "",
+      header_color: "",
       short_description: "",
       ingredients: "",
       instructions: ""
@@ -179,6 +183,7 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, form, 
                       key={index}
                       onClick={() => {
                         setSelectedTag(index);
+                        form.header_color = color;
                       }}
                     >
                       {
@@ -291,6 +296,18 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, form, 
         <button className="font-bold bg-emerald-600 px-5 py-3 rounded-xl outline-2 outline-emerald-600 capitalize text-white hover:bg-white hover:text-emerald-600"
           type="button"
           onClick={() => {
+            setRecipes((array) => [
+              ...array,
+              {
+                title: form.title,
+                category: form.category,
+                cook_time: form.cook_time,
+                header_color: form.header_color,
+                short_description: form.short_description,
+                ingredients: form.ingredients,
+                instructions: form.instructions
+              }
+            ]);
             setCreateRecipe(false);
             clearForm();
           }}
