@@ -59,19 +59,22 @@ export default function Home(){
         {/* sorter na vyhledani receptu */}
         <Sorter
           isDark={isDark}
+          recipes={recipes}
         />
 
         {/* mrizka receptu */}
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 sm:grid-cols-2">
 
           {
-            recipes.map((item) => {
+            recipes.map((item, index) => {
               return(
                 <Recipe
                   isDark={isDark}
                   setViewRecipe={setViewRecipe}
-                  key={item.title}
+                  key={index}
                   item={item}
+                  setRecipes={setRecipes}
+                  recipes={recipes}
                 />
               );
             })
