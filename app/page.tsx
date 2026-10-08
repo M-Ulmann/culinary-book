@@ -16,6 +16,14 @@ export default function Home(){
   const [isDark, setIsDark] = useState(false);
   const [createRecipe, setCreateRecipe] = useState(false);
   const [viewRecipe, setViewRecipe] = useState(false);
+  const [form, setForm] = useState({
+    title: "",
+    category: "",
+    cook_time: "",
+    short_description: "",
+    ingredients: "",
+    instructions: ""
+  });
 
   return(
     <div className={clsx("flex flex-col gap-10 min-h-dvh transition",
@@ -30,6 +38,8 @@ export default function Home(){
         createRecipe={createRecipe}
         setCreateRecipe={setCreateRecipe}
         isDark={isDark}
+        form={form}
+        setForm={setForm}
       />
 
       {/* ukaze samotny recept */}
@@ -69,6 +79,7 @@ export default function Home(){
                   isDark={isDark}
                   setViewRecipe={setViewRecipe}
                   key={item.title}
+                  item={item}
                 />
               );
             })

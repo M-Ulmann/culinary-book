@@ -3,11 +3,41 @@ import clsx from "clsx";
 import { SetStateAction, Dispatch, useState } from "react";
 import { tagColor } from "@/lib/tagColor";
 
-export default function AddRecipe({createRecipe, setCreateRecipe, isDark} : {
+export default function AddRecipe({createRecipe, setCreateRecipe, isDark, form, setForm} : {
   createRecipe: boolean
   setCreateRecipe: Dispatch<SetStateAction<boolean>>
   isDark: boolean
+  form: {
+    title: string;
+    category: string;
+    cook_time: string;
+    short_description: string;
+    ingredients: string;
+    instructions: string;
+  }
+  setForm: Dispatch<SetStateAction<{
+    title: string;
+    category: string;
+    cook_time: string;
+    short_description: string;
+    ingredients: string;
+    instructions: string;
+  }>>
 }) {
+
+  const [formTitle, setFormTitle] = useState("");
+
+  function clearForm(){
+    setForm({
+      title: "",
+      category: "",
+      cook_time: "",
+      short_description: "",
+      ingredients: "",
+      instructions: ""
+    });
+    setFormTitle("");
+  }
 
   return(
     <form className={clsx("flex flex-col z-20 w-11/12 max-h-11/12 overflow-y-scroll mx-5 self-center fixed top-1/2 -translate-y-1/2 p-10 rounded-2xl gap-7 md:w-175",
@@ -31,7 +61,10 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark} : {
         <button className={clsx("p-2 rounded-full",
           isDark ? "hover:bg-slate-600 text-white" : "hover:bg-emerald-50 text-black"
         )}
-          onClick={() => {setCreateRecipe(false)}}
+          onClick={() => {
+            setCreateRecipe(false);
+            clearForm();
+          }}
           type="button"
         >
           <XIcon className="sm:inline hidden" size={25}/>
@@ -55,6 +88,15 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark} : {
               )}
               type="text"
               placeholder="e.g. Peanut Butter And Jelly"
+              onChange={(event) => {
+                setForm((prev) => ({
+                  ...prev,
+                  title: event.target.value
+                }));
+                setFormTitle(event.target.value);
+                console.log(form.title);
+              }}
+              value={formTitle}
             />
           </div>
 
@@ -177,7 +219,10 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark} : {
           isDark ? "bg-gray-600 text-white outline-gray-400 hover:bg-gray-700" : "bg-white text-black outline-gray-300 hover:bg-emerald-50"
         )}
           type="button"
-          onClick={() => {setCreateRecipe(false)}}
+          onClick={() => {
+            setCreateRecipe(false);
+            clearForm();
+          }}
         >
           cancel
         </button>
