@@ -54,7 +54,7 @@ export default function Recipe({isDark, setViewRecipe, item} : {
               item.title
             }
           </h3>
-          <p className={clsx("text-sm",
+          <p className={clsx("text-sm min-h-11 line-clamp-2",
             isDark ? "text-gray-400" : "text-gray-500"
           )}>
             {
