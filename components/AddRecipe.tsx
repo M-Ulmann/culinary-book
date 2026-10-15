@@ -263,14 +263,14 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
           <textarea className={clsx("focus:outline-none outline-1 outline-emerald-600 bg-gray-100 w-full min-h-6 h-20 focus:placeholder:text-transparent focus-within:ring-3 focus-within:ring-emerald-500 rounded-md pl-2",
             isDark ? "bg-gray-700 text-white" : "bg-gray-100 text-black"
           )}
-            name="ingredients" 
-            id="ingredients"
+            name="instructions" 
+            id="instructions"
             placeholder="Step by step guide..."
             onChange={(event) => {
               setCreateInstructions(event.target.value);
               setForm((items) => ({
                 ...items,
-                ingredients: event.target.value
+                instructions: event.target.value
               }))
             }}
             value={createInstructions}

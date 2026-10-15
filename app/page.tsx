@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import clsx from "clsx";
 import AddRecipe from "@/components/AddRecipe";
 import Header from "@/components/Header";
@@ -26,6 +26,11 @@ export default function Home(){
     instructions: "",
 });
 
+  function ingredientList(){
+    const splitArray = singleRecipe.ingredients.split("\n");
+    return splitArray;
+  }
+
   return(
     <div className={clsx("flex flex-col gap-10 min-h-dvh transition",
       isDark ? "bg-gray-800" : "bg-green-50"
@@ -48,6 +53,7 @@ export default function Home(){
         setViewRecipe={setViewRecipe}
         viewRecipe={viewRecipe}
         singleRecipe={singleRecipe}
+        ingredientList={ingredientList}
       />
 
       {/* header */}
@@ -86,6 +92,7 @@ export default function Home(){
                   recipes={recipes}
                   recipeIndex={index}
                   setSingleRecipe={setSingleRecipe}
+                  ingredientList={ingredientList}
                 />
               );
             })

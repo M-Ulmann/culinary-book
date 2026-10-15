@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { Tag, Pencil, Trash, Clock } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
 
-export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes, recipeIndex, setSingleRecipe} : {
+export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes, recipeIndex, setSingleRecipe, ingredientList} : {
   isDark: boolean
   setViewRecipe: Dispatch<SetStateAction<boolean>>
   item: {
@@ -41,6 +41,7 @@ export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes
     ingredients: string;
     instructions: string;
 }>>
+  ingredientList: () => string[]
 }){
 
   function deleteItem(){
@@ -114,7 +115,10 @@ export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes
           </div>
 
           <p className="text-gray-400 text-sm font-bold">
-            5 ingredients
+            {
+              ingredientList().length
+            }
+            ingredients
           </p>
         </div>
 
