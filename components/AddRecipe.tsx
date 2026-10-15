@@ -323,7 +323,6 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
                 }
               ]);
             }
-
             setCreateRecipe(false);
             clearForm();
           }}

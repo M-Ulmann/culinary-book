@@ -54,6 +54,11 @@ export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes
     setRecipes(deletedItem);
   }
 
+  function ingredientCount(){
+    const numberIngredients = recipes[recipeIndex].ingredients.split("\n").length;
+    return numberIngredients;
+  }
+
   return(
     <div className={clsx("rounded-2xl outline-4 outline-emerald-500 hover:shadow-2xl hover:-translate-y-1.5 transition",
       isDark ? "bg-zinc-900" : "bg-white"
@@ -125,9 +130,8 @@ export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes
 
           <p className="text-gray-400 text-sm font-bold">
             {
-              ingredientList().length
+              ingredientCount() === 1 ? `${ingredientCount()} ingredient` : `${ingredientCount()} ingredients`
             }
-            ingredients
           </p>
         </div>
 
