@@ -15,6 +15,9 @@ export default function ShowRecipe({isDark, setViewRecipe, viewRecipe, singleRec
     instructions: string;
 }
 }){
+
+  const splitArray = singleRecipe.ingredients.includes("\n") ? singleRecipe.ingredients.split("\n") : [""];
+
   return(
     <section className={clsx("flex-col z-20 w-11/12 max-h-9/12 overflow-y-scroll mx-5 self-center bg-white fixed top-1/2 -translate-y-1/2 rounded-2xl md:w-175",
       viewRecipe ? "flex" : "hidden"
@@ -67,36 +70,21 @@ export default function ShowRecipe({isDark, setViewRecipe, viewRecipe, singleRec
           </h4>
 
           <ul className="grid grid-cols-2 gap-3 list-disc list-inside marker:text-2xl ">
-            <li className={clsx("p-1 rounded-lg",
-              isDark ? "bg-slate-700 text-white marker:text-emerald-400" : "bg-emerald-50 text-gray-700 marker:text-emerald-600"
-            )}>
-              2 slices sourdough
-            </li>
-            <li className={clsx("p-1 rounded-lg",
-              isDark ? "bg-slate-700 text-white marker:text-emerald-400" : "bg-emerald-50 text-gray-700 marker:text-emerald-600"
-            )}>
-              2 slices sourdough
-            </li>
-            <li className={clsx("p-1 rounded-lg",
-              isDark ? "bg-slate-700 text-white marker:text-emerald-400" : "bg-emerald-50 text-gray-700 marker:text-emerald-600"
-            )}>
-              2 slices sourdough
-            </li>
-            <li className={clsx("p-1 rounded-lg",
-              isDark ? "bg-slate-700 text-white marker:text-emerald-400" : "bg-emerald-50 text-gray-700 marker:text-emerald-600"
-            )}>
-              2 slices sourdough
-            </li>
-            <li className={clsx("p-1 rounded-lg",
-              isDark ? "bg-slate-700 text-white marker:text-emerald-400" : "bg-emerald-50 text-gray-700 marker:text-emerald-600"
-            )}>
-              2 slices sourdough
-            </li>
-            <li className={clsx("p-1 rounded-lg",
-              isDark ? "bg-slate-700 text-white marker:text-emerald-400" : "bg-emerald-50 text-gray-700 marker:text-emerald-600"
-            )}>
-              2 slices sourdough
-            </li>
+            {
+              splitArray.map((ingredient, index) => {
+                return(
+                  <li className={clsx("p-1 rounded-lg",
+                    isDark ? "bg-slate-700 text-white marker:text-emerald-400" : "bg-emerald-50 text-gray-700 marker:text-emerald-600"
+                  )}
+                    key={index}
+                  >
+                    {
+                      ingredient
+                    }
+                  </li>
+                );
+              })
+            }
           </ul>
         </div>
 

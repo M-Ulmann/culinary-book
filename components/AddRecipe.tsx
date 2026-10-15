@@ -1,6 +1,6 @@
 import { UtensilsIcon, XIcon, Check } from "lucide-react";
 import clsx from "clsx";
-import { SetStateAction, Dispatch, useState, useEffect } from "react";
+import { SetStateAction, Dispatch, useState } from "react";
 import { tagColor } from "@/lib/tagColor";
 
 export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRecipes} : {
