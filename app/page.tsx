@@ -17,6 +17,14 @@ export default function Home(){
   const [createRecipe, setCreateRecipe] = useState(false);
   const [viewRecipe, setViewRecipe] = useState(false);
   const [recipes, setRecipes] = useState(recipeDetails);
+  const [singleRecipe, setSingleRecipe] = useState({
+    title: "",
+    category: "",
+    header_color: "",
+    short_description: "",
+    ingredients: "",
+    instructions: "",
+});
 
   return(
     <div className={clsx("flex flex-col gap-10 min-h-dvh transition",
@@ -39,6 +47,7 @@ export default function Home(){
         isDark={isDark}
         setViewRecipe={setViewRecipe}
         viewRecipe={viewRecipe}
+        singleRecipe={singleRecipe}
       />
 
       {/* header */}
@@ -76,6 +85,7 @@ export default function Home(){
                   setRecipes={setRecipes}
                   recipes={recipes}
                   recipeIndex={index}
+                  setSingleRecipe={setSingleRecipe}
                 />
               );
             })

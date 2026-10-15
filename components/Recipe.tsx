@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { Tag, Pencil, Trash, Clock } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
 
-export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes, recipeIndex} : {
+export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes, recipeIndex, setSingleRecipe} : {
   isDark: boolean
   setViewRecipe: Dispatch<SetStateAction<boolean>>
   item: {
@@ -32,7 +32,15 @@ export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes
     ingredients: string;
     instructions: string;
 }[]
-recipeIndex: number
+  recipeIndex: number
+  setSingleRecipe: Dispatch<SetStateAction<{
+    title: string;
+    category: string;
+    header_color: string;
+    short_description: string;
+    ingredients: string;
+    instructions: string;
+}>>
 }){
 
   function deleteItem(){
@@ -112,7 +120,10 @@ recipeIndex: number
 
         {/* tlacitko ukaze recept */}
         <button className="bg-black py-3 text-white font-bold uppercase tracking-wider rounded-xl text-sm hover:bg-emerald-600 transition"
-          onClick={() => {setViewRecipe(true)}}
+          onClick={() => {
+            setViewRecipe(true);
+            setSingleRecipe(recipes[recipeIndex]);
+          }}
         >
           view details
         </button>
