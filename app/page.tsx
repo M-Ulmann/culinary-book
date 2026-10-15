@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import clsx from "clsx";
 import AddRecipe from "@/components/AddRecipe";
 import Header from "@/components/Header";
@@ -25,6 +25,8 @@ export default function Home(){
     ingredients: "",
     instructions: "",
 });
+  const [isEditing, setIsEditing] = useState(false);
+  const [editId, setEditId] = useState<number | null>();
 
   function ingredientList(){
     const splitArray = singleRecipe.ingredients.split("\n");
@@ -45,6 +47,9 @@ export default function Home(){
         setCreateRecipe={setCreateRecipe}
         isDark={isDark}
         setRecipes={setRecipes}
+        isEditing={isEditing}
+        setIsEditing={setIsEditing}
+        editId={editId}
       />
 
       {/* ukaze samotny recept */}
@@ -93,6 +98,9 @@ export default function Home(){
                   recipeIndex={index}
                   setSingleRecipe={setSingleRecipe}
                   ingredientList={ingredientList}
+                  setCreateRecipe={setCreateRecipe}
+                  setIsEditing={setIsEditing}
+                  setEditId={setEditId}
                 />
               );
             })

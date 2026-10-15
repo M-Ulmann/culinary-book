@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { Tag, Pencil, Trash, Clock } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
 
-export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes, recipeIndex, setSingleRecipe, ingredientList} : {
+export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes, recipeIndex, setSingleRecipe, ingredientList, setCreateRecipe, setIsEditing, setEditId} : {
   isDark: boolean
   setViewRecipe: Dispatch<SetStateAction<boolean>>
   item: {
@@ -42,6 +42,9 @@ export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes
     instructions: string;
 }>>
   ingredientList: () => string[]
+  setCreateRecipe: Dispatch<SetStateAction<boolean>>
+  setIsEditing: Dispatch<SetStateAction<boolean>>
+  setEditId: Dispatch<SetStateAction<number | null | undefined>>
 }){
 
   function deleteItem(){
@@ -68,7 +71,13 @@ export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes
         </div>
 
         <div className="flex flex-row gap-3 items-center bg-black/30 text-white px-2 py-1 rounded-md uppercase">
-          <button className="hover:text-amber-400">
+          <button className="hover:text-amber-400"
+            onClick={() => {
+              setCreateRecipe(true);
+              setIsEditing(true);
+              setEditId(recipeIndex);
+            }}
+          >
             <Pencil size={20}/>
           </button>
 
