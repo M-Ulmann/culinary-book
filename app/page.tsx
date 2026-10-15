@@ -75,6 +75,7 @@ export default function Home(){
                   item={item}
                   setRecipes={setRecipes}
                   recipes={recipes}
+                  recipeIndex={index}
                 />
               );
             })

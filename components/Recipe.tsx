@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { Tag, Pencil, Trash, Clock } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
 
-export default function Recipe({isDark, setViewRecipe, item} : {
+export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes, recipeIndex} : {
   isDark: boolean
   setViewRecipe: Dispatch<SetStateAction<boolean>>
   item: {
@@ -14,7 +14,34 @@ export default function Recipe({isDark, setViewRecipe, item} : {
     ingredients: string
     instructions: string
   }
+  setRecipes: Dispatch<SetStateAction<{
+    title: string;
+    category: string;
+    cook_time: string;
+    header_color: string;
+    short_description: string;
+    ingredients: string;
+    instructions: string;
+}[]>>
+  recipes: {
+    title: string;
+    category: string;
+    cook_time: string;
+    header_color: string;
+    short_description: string;
+    ingredients: string;
+    instructions: string;
+}[]
+recipeIndex: number
 }){
+
+  function deleteItem(){
+    const deletedItem = recipes.filter((_, index) => {
+      return index !== recipeIndex
+    });
+    setRecipes(deletedItem);
+  }
+
   return(
     <div className={clsx("rounded-2xl outline-4 outline-emerald-500 hover:shadow-2xl hover:-translate-y-1.5 transition",
       isDark ? "bg-zinc-900" : "bg-white"
@@ -36,7 +63,11 @@ export default function Recipe({isDark, setViewRecipe, item} : {
             <Pencil size={20}/>
           </button>
 
-          <button className="hover:text-amber-400">
+          <button className="hover:text-amber-400"
+            onClick={() => {
+              deleteItem();
+            }}
+          >
             <Trash size={20}/>
           </button>
         </div>
