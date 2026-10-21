@@ -45,6 +45,8 @@ export default function Home(){
 
   const [searchValue, setSearchValue] = useState('');
 
+  const [currentPage, setCurrentPage] = useState(0);
+
   function ingredientList(){
     const splitArray = singleRecipe.ingredients.split("\n");
     return splitArray;
@@ -67,7 +69,10 @@ export default function Home(){
       })
     }
 
-    return filteredRecipes.map((item, index) => {
+    const splicedFilteredArray = filteredRecipes.slice(currentPage * 6, (currentPage + 1) * 6);
+    console.log(splicedFilteredArray);
+
+    return splicedFilteredArray.map((item, index) => {
       return(
         <Recipe
           isDark={isDark}
@@ -172,6 +177,9 @@ export default function Home(){
         {/* footer pro navigaci mezi recepty (zatim nefunkcni) */}
         <Footer
           isDark={isDark}
+          recipes={recipes}
+          setCurrentPage={setCurrentPage}
+          currentPage={currentPage}
         />
 
       </main>
