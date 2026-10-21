@@ -35,10 +35,45 @@ export default function Home(){
   const [isEditing, setIsEditing] = useState(false);
   const [editId, setEditId] = useState<number | null>();
   const [isLoaded, setIsLoaded] = useState(false);
+  const [pressedCategory, setPressedCategory] = useState(-1);
+  const [categoryContent, setCategoryContent] = useState<string | null>("ALL");
 
   function ingredientList(){
     const splitArray = singleRecipe.ingredients.split("\n");
     return splitArray;
+  }
+
+  function renderRecipe(){
+    let filteredRecipes;
+
+    if(categoryContent === "ALL"){
+      filteredRecipes = recipes;
+    }
+    else{
+      filteredRecipes = recipes.filter((item) => {
+        return item.category.toUpperCase() === categoryContent;
+      })
+    }
+
+    return filteredRecipes.map((item, index) => {
+      return(
+        <Recipe
+          isDark={isDark}
+          setViewRecipe={setViewRecipe}
+          key={index}
+          item={item}
+          setRecipes={setRecipes}
+          recipes={recipes}
+          recipeIndex={index}
+          setSingleRecipe={setSingleRecipe}
+          ingredientList={ingredientList}
+          setCreateRecipe={setCreateRecipe}
+          setIsEditing={setIsEditing}
+          setEditId={setEditId}
+        />
+      );
+    })
+
   }
 
   useEffect(() => {
@@ -106,30 +141,16 @@ export default function Home(){
         <Sorter
           isDark={isDark}
           recipes={recipes}
+          setPressedCategory={setPressedCategory}
+          pressedCategory={pressedCategory}
+          setCategoryContent={setCategoryContent}
         />
 
         {/* mrizka receptu */}
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 sm:grid-cols-2">
 
           {
-            recipes.map((item, index) => {
-              return(
-                <Recipe
-                  isDark={isDark}
-                  setViewRecipe={setViewRecipe}
-                  key={index}
-                  item={item}
-                  setRecipes={setRecipes}
-                  recipes={recipes}
-                  recipeIndex={index}
-                  setSingleRecipe={setSingleRecipe}
-                  ingredientList={ingredientList}
-                  setCreateRecipe={setCreateRecipe}
-                  setIsEditing={setIsEditing}
-                  setEditId={setEditId}
-                />
-              );
-            })
+            renderRecipe()
           }
 
         </div>

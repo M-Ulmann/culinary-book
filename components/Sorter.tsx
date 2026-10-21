@@ -1,7 +1,8 @@
 import clsx from "clsx";
 import { Search } from "lucide-react";
+import { Dispatch, SetStateAction } from "react";
 
-export default function Sorter({isDark, recipes} : {
+export default function Sorter({isDark, recipes, setPressedCategory, pressedCategory, setCategoryContent} : {
   isDark: boolean
   recipes: {
     title: string;
@@ -12,6 +13,9 @@ export default function Sorter({isDark, recipes} : {
     ingredients: string;
     instructions: string;
   }[]
+  setPressedCategory: Dispatch<SetStateAction<number>>
+  pressedCategory: number
+  setCategoryContent: Dispatch<SetStateAction<string | null>>
 }){
 
   const dupelessCategories = [...new Set(
@@ -42,18 +46,30 @@ export default function Sorter({isDark, recipes} : {
         isDark ? "text-white" : "text-black"
       )}>
 
-        <button className={clsx("font-bold px-3 py-1 rounded-xl text-sm transition uppercase",
-          isDark ? "bg-slate-900 hover:bg-slate-800" : "bg-gray-100 hover:bg-gray-200"
-        )}>
-          All
+        <button className={clsx("font-bold px-3 py-1 rounded-xl text-sm transition uppercase not",
+          pressedCategory === -1 ? "bg-emerald-400" : 
+            isDark ? "bg-slate-900" : "bg-gray-100"
+        )}
+          onClick={() => {
+            setPressedCategory(-1);
+            setCategoryContent("ALL");
+          }}
+        >
+          ALL
         </button>
 
         {
           dupelessCategories.map((item, index) => {
             return(
               <button key={index} className={clsx("font-bold px-3 py-1 rounded-xl text-sm transition capitalize",
-                isDark ? "bg-slate-900 hover:bg-slate-800" : "bg-gray-100 hover:bg-gray-200"
-              )}>
+                pressedCategory === index ? "bg-emerald-400" : 
+                  isDark ? "bg-slate-900" : "bg-gray-100"
+              )}
+                onClick={(event) => {
+                  setPressedCategory(index);
+                  setCategoryContent(event.currentTarget.textContent);
+                }}
+              >
                 {
                   item
                 }
