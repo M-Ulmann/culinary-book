@@ -13,6 +13,7 @@ import ShowRecipe from "@/components/ShowRecipe";
 export default function Home(){
 
   const [isDark, setIsDark] = useState(false);
+
   const [createRecipe, setCreateRecipe] = useState(false);
   const [viewRecipe, setViewRecipe] = useState(false);
   const [recipes, setRecipes] = useState<{
@@ -24,6 +25,7 @@ export default function Home(){
     ingredients: string;
     instructions: string;
   }[]>([]);
+
   const [singleRecipe, setSingleRecipe] = useState({
     title: "",
     category: "",
@@ -32,11 +34,16 @@ export default function Home(){
     ingredients: "",
     instructions: "",
 });
+
   const [isEditing, setIsEditing] = useState(false);
   const [editId, setEditId] = useState<number | null>();
+
   const [isLoaded, setIsLoaded] = useState(false);
+
   const [pressedCategory, setPressedCategory] = useState(-1);
   const [categoryContent, setCategoryContent] = useState<string | null>("ALL");
+
+  const [searchValue, setSearchValue] = useState('');
 
   function ingredientList(){
     const splitArray = singleRecipe.ingredients.split("\n");
@@ -47,11 +54,16 @@ export default function Home(){
     let filteredRecipes;
 
     if(categoryContent === "ALL"){
-      filteredRecipes = recipes;
+      filteredRecipes = recipes && recipes.filter((item) => {
+        return item.title.toLowerCase().includes(searchValue.toLowerCase());
+      });
     }
     else{
       filteredRecipes = recipes.filter((item) => {
-        return item.category.toUpperCase() === categoryContent;
+        const matchCategory = item.category.toUpperCase() === categoryContent;
+        const matchSearchValue = item.title.toLowerCase().includes(searchValue.toLowerCase());
+
+        return matchCategory && matchSearchValue;
       })
     }
 
@@ -144,6 +156,8 @@ export default function Home(){
           setPressedCategory={setPressedCategory}
           pressedCategory={pressedCategory}
           setCategoryContent={setCategoryContent}
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
         />
 
         {/* mrizka receptu */}

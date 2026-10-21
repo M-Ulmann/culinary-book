@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { Search } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
 
-export default function Sorter({isDark, recipes, setPressedCategory, pressedCategory, setCategoryContent} : {
+export default function Sorter({isDark, recipes, setPressedCategory, pressedCategory, setCategoryContent, searchValue, setSearchValue} : {
   isDark: boolean
   recipes: {
     title: string;
@@ -16,6 +16,8 @@ export default function Sorter({isDark, recipes, setPressedCategory, pressedCate
   setPressedCategory: Dispatch<SetStateAction<number>>
   pressedCategory: number
   setCategoryContent: Dispatch<SetStateAction<string | null>>
+  searchValue: string
+  setSearchValue: Dispatch<SetStateAction<string>>
 }){
 
   const dupelessCategories = [...new Set(
@@ -38,6 +40,10 @@ export default function Sorter({isDark, recipes, setPressedCategory, pressedCate
           className="outline-none w-full focus:placeholder:text-transparent lg:w-70"
           type="text"
           placeholder="Search for recipes..."
+          value={searchValue}
+          onChange={(event) => {
+            setSearchValue(event.target.value);
+          }}
         />
       </div>
 
