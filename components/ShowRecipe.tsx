@@ -62,9 +62,9 @@ export default function ShowRecipe({isDark, setViewRecipe, viewRecipe, singleRec
 
         {/* ingredience */}
         <div className="flex flex-col gap-3">
-          <h4 className={clsx("uppercase font-extrabold tracking-wider",
-            isDark ? "text-emerald-400" : "text-emerald-600"
-          )}>
+          <h4 className="uppercase font-extrabold tracking-wider"
+            style={{color: singleRecipe.header_color}}
+          >
             ingredients
           </h4>
 
@@ -72,14 +72,17 @@ export default function ShowRecipe({isDark, setViewRecipe, viewRecipe, singleRec
             {
               ingredientList().map((ingredient, index) => {
                 return(
-                  <li className={clsx("p-1 rounded-lg",
-                    isDark ? "bg-slate-700 text-white marker:text-emerald-400" : "bg-emerald-50 text-gray-700 marker:text-emerald-600"
-                  )}
-                    key={index}
+                  <li className="p-1 rounded-lg"
+                  style={{backgroundColor: `color-mix(in srgb, ${singleRecipe.header_color} 20%, transparent)`, color: singleRecipe.header_color}}
+                    key={index} 
                   >
-                    {
-                      ingredient
-                    }
+                    <span className={clsx(
+                      isDark ? "text-white" : "text-black"
+                    )}>
+                      {
+                        ingredient
+                      }
+                    </span>
                   </li>
                 );
               })
@@ -89,15 +92,17 @@ export default function ShowRecipe({isDark, setViewRecipe, viewRecipe, singleRec
 
         {/* instrukce */}
         <div className="flex flex-col gap-3">
-          <h4 className={clsx("uppercase font-extrabold tracking-wider",
-            isDark ? "text-emerald-400" : "text-emerald-600"
-          )}>
+          <h4 className="uppercase font-extrabold tracking-wider"
+            style={{color: singleRecipe.header_color}}
+          >
             instructions
           </h4>
 
           <p className={clsx("p-5 outline-1 rounded-2xl leading-8",
-            isDark ? "bg-gray-700 outline-gray-500 text-white" : "bg-emerald-50 outline-gray-200 text-gray-600"
-          )}>
+            isDark ? "outline-gray-500 text-white" : "outline-gray-200 text-gray-600"
+          )}
+            style={{backgroundColor: `color-mix(in srgb, ${singleRecipe.header_color} 20%, transparent)`}}
+          >
             {
               singleRecipe.instructions
             }

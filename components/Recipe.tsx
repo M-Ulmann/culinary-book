@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { Tag, Pencil, Trash, Clock } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
 
-export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes, recipeIndex, setSingleRecipe, ingredientList, setCreateRecipe, setIsEditing, setEditId} : {
+export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes, recipeIndex, setSingleRecipe, setCreateRecipe, setIsEditing, setEditId} : {
   isDark: boolean
   setViewRecipe: Dispatch<SetStateAction<boolean>>
   item: {
@@ -60,9 +60,11 @@ export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes
   }
 
   return(
-    <div className={clsx("rounded-2xl outline-4 outline-emerald-500 hover:shadow-2xl hover:-translate-y-1.5 transition",
+    <div className={clsx("rounded-2xl outline-4 hover:shadow-2xl hover:-translate-y-1.5 transition",
       isDark ? "bg-zinc-900" : "bg-white"
-    )}>
+    )}
+      style={{outlineColor: item.header_color}}
+    >
 
       {/* vrchni cast s kategorii a moznosti upravit/odstranit recept*/}
       <div className="flex flex-row justify-between items-start h-20 rounded-t-2xl px-5 py-3"
