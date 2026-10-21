@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import clsx from "clsx";
 import AddRecipe from "@/components/AddRecipe";
 import Header from "@/components/Header";
@@ -9,14 +9,21 @@ import Sorter from "@/components/Sorter";
 import Recipe from "@/components/Recipe";
 import Footer from "@/components/Footer";
 import ShowRecipe from "@/components/ShowRecipe";
-import { recipeDetails } from "@/lib/recipeDetails";
 
 export default function Home(){
 
   const [isDark, setIsDark] = useState(false);
   const [createRecipe, setCreateRecipe] = useState(false);
   const [viewRecipe, setViewRecipe] = useState(false);
-  const [recipes, setRecipes] = useState(recipeDetails);
+  const [recipes, setRecipes] = useState<{
+    title: string;
+    category: string;
+    cook_time: string;
+    header_color: string;
+    short_description: string;
+    ingredients: string;
+    instructions: string;
+  }[]>([]);
   const [singleRecipe, setSingleRecipe] = useState({
     title: "",
     category: "",
@@ -27,11 +34,30 @@ export default function Home(){
 });
   const [isEditing, setIsEditing] = useState(false);
   const [editId, setEditId] = useState<number | null>();
+  const [isLoaded, setIsLoaded] = useState(false);
 
   function ingredientList(){
     const splitArray = singleRecipe.ingredients.split("\n");
     return splitArray;
   }
+
+  useEffect(() => {
+    if(isLoaded){
+      localStorage.setItem('recipes', JSON.stringify(recipes));
+    }
+  }, [recipes, isLoaded]);
+
+  useEffect(() => {
+    const storage = localStorage.getItem('recipes');
+
+    if(storage){
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setRecipes(JSON.parse(storage));
+    }
+
+    setIsLoaded(true);
+
+  }, [])
 
   return(
     <div className={clsx("flex flex-col gap-10 min-h-dvh transition",
