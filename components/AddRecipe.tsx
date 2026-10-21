@@ -25,7 +25,7 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
     title: "",
     category: "",
     cook_time: "",
-    header_color: tagColor[0], //opravit barvu
+    header_color: tagColor[0], 
     short_description: "",
     ingredients: "",
     instructions: ""
@@ -44,7 +44,7 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
       title: "",
       category: "",
       cook_time: "",
-      header_color: "",
+      header_color: tagColor[0],
       short_description: "",
       ingredients: "",
       instructions: ""
@@ -189,7 +189,10 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
                       key={index}
                       onClick={() => {
                         setSelectedTag(index);
-                        form.header_color = color;
+                        setForm((items) => ({
+                          ...items,
+                          header_color: color
+                        }));
                       }}
                     >
                       {
@@ -313,13 +316,7 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
               setRecipes((array) => [
                 ...array,
                 {
-                  title: form.title,
-                  category: form.category,
-                  cook_time: form.cook_time,
-                  header_color: form.header_color,
-                  short_description: form.short_description,
-                  ingredients: form.ingredients,
-                  instructions: form.instructions
+                  ...form
                 }
               ]);
             }
