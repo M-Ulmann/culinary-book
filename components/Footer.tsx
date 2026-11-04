@@ -26,7 +26,8 @@ export default function Footer({isDark, recipes, setCurrentPage, currentPage} : 
     return recipesByPage.map((_, index) => {
       return(
         <button className={clsx(" py-2 px-4 rounded-xl  transition",
-          isDark ? "bg-gray-700 hover:bg-emerald-800 text-white" : "bg-gray-200 hover:bg-emerald-100 text-black"
+          isDark ? "bg-gray-700 hover:bg-emerald-800 text-white" : "hover:bg-emerald-100 text-black",
+          index === currentPage && "bg-emerald-500 text-white hover:text-black"
         )}
           key={index}
           onClick={() => {
@@ -42,17 +43,21 @@ export default function Footer({isDark, recipes, setCurrentPage, currentPage} : 
 
   }
 
+  const maxPage = Math.ceil(recipes.length / 6) - 1;
+
   return(
     <footer className="flex flex-row gap-3 self-center text-2xl">
       {/* tlacitko zpet */}
-      <button className={clsx("p-3 rounded-xl hover:bg-emerald-500 hover:text-white transition",
-        isDark ? "text-white" : "text-black"
+      <button className={clsx("p-3 rounded-xl hover:bg-emerald-500 hover:text-white transition disabled:!cursor-not-allowed disabled:hover:bg-emerald-100 disabled:hover:text-black",
+        isDark ? "text-white" : "text-black",
       )}
         onClick={() => {
           if(currentPage > 0){
             setCurrentPage(currentPage - 1)
           }
+          console.log(currentPage);
         }}
+        disabled={currentPage === 0}
       >
         <ArrowLeft/>
       </button>
@@ -63,14 +68,15 @@ export default function Footer({isDark, recipes, setCurrentPage, currentPage} : 
       }
 
       {/* tlacitko dopredu */}
-      <button className={clsx("p-3 rounded-xl hover:bg-emerald-500 hover:text-white transition",
+      <button className={clsx("p-3 rounded-xl hover:bg-emerald-500 hover:text-white transition disabled:!cursor-not-allowed disabled:hover:bg-emerald-100 disabled:hover:text-black",
         isDark ? "text-white" : "text-black"
       )}
       onClick={() => {
-        if(currentPage < Math.ceil(recipes.length / 6) - 1)  {
+        if(currentPage < maxPage)  {
           setCurrentPage(currentPage + 1)
         }
       }}
+      disabled={currentPage === maxPage}
       >
         <ArrowRight/>
       </button>
