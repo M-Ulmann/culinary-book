@@ -48,7 +48,7 @@ export default function Sorter({isDark, recipes, setPressedCategory, pressedCate
       </div>
 
       {/* seznam tlacitek (budou vytvoreny podle kategorie) */}
-      <div className={clsx("flex flex-row justify-center gap-3 flex-wrap",
+      <div className={clsx("flex flex-row gap-3 overflow-x-scroll",
         isDark ? "text-white" : "text-black"
       )}>
 
