@@ -1,6 +1,6 @@
 import { UtensilsIcon, XIcon, Check } from "lucide-react";
 import clsx from "clsx";
-import { SetStateAction, Dispatch, useState } from "react";
+import { SetStateAction, Dispatch, useState, useEffect } from "react";
 import { tagColor } from "@/lib/tagColor";
 
 export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRecipes, isEditing, setIsEditing, editId, form, setForm} : {
@@ -40,6 +40,15 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
 }>>
 }) {
 
+  const [isWarning, setIsWarning] = useState<boolean>(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() =>{
+      setIsWarning(false);
+    }, 2000)
+    return () => clearTimeout(timer);
+  }, [isWarning]);
+
   function clearForm(){
     setForm({
       title: "",
@@ -52,6 +61,15 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
     });
 
     setIsEditing(false);
+  }
+
+  function checkValidation(){
+    if(form.title.length >= 3 && form.category.length >= 3 && form.cook_time.length >= 2 && form.short_description.length >= 10 && form.ingredients.length >= 3 && form.instructions.length >= 10){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 
   return(
@@ -95,13 +113,14 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
         <div className="flex flex-col gap-5 sm:flex-row">
           <div className="flex flex-col flex-1 gap-2">
             <p className={clsx("uppercase font-bold text-sm",
-              isDark ? "text-gray-400" : "text-gray-500"
+              isDark ? "text-gray-400" : "text-gray-500",
+              form.title.length < 3 && form.title.length > 0? "text-red-500" : isDark
             )}>
               title
             </p>
             <input 
               className={clsx("focus:outline-none outline-1 outline-emerald-600 w-full focus:placeholder:text-transparent focus-within:ring-3 focus-within:ring-emerald-500 rounded-md pl-2 py-3",
-                isDark ? "bg-gray-700 text-white" : "bg-gray-100 text-black"
+                isDark ? "bg-gray-700 text-white" : "bg-gray-100 text-black",
               )}
               type="text"
               placeholder="e.g. Peanut Butter And Jelly"
@@ -117,7 +136,8 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
 
           <div className="flex flex-col flex-1 gap-2">
             <p className={clsx("uppercase font-bold text-sm",
-              isDark ? "text-gray-400" : "text-gray-500"
+              isDark ? "text-gray-400" : "text-gray-500",
+              form.category.length < 3 && form.category.length > 0? "text-red-500" : isDark
             )}>
               category
             </p>
@@ -142,7 +162,8 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
         <div className="flex flex-col gap-5 sm:flex-row">
           <div className="flex flex-col flex-1 gap-2">
             <p className={clsx("uppercase font-bold text-sm",
-              isDark ? "text-gray-400" : "text-gray-500"
+              isDark ? "text-gray-400" : "text-gray-500",
+              form.cook_time.length < 2 && form.cook_time.length > 0 ? "text-red-500" : isDark
             )}>
               cook time
             </p>
@@ -202,7 +223,8 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
         {/* input pro jednoduchy popis receptu */}
         <div className="flex flex-col gap-2">
             <p className={clsx("uppercase font-bold text-sm",
-              isDark ? "text-gray-400" : "text-gray-500"
+              isDark ? "text-gray-400" : "text-gray-500",
+              form.short_description.length < 10 && form.short_description.length > 0 ? "text-red-500" : isDark
             )}>
             short description
           </p>
@@ -228,7 +250,8 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
         {/* input pro jednotlive ingredience */}
         <div className="flex flex-col gap-2">
           <p className={clsx("uppercase font-bold text-sm",
-              isDark ? "text-gray-400" : "text-gray-500"
+              isDark ? "text-gray-400" : "text-gray-500",
+              form.ingredients.length < 3 && form.ingredients.length > 0 ? "text-red-500" : isDark
           )}>
             ingredients (1 per line)
           </p>
@@ -253,7 +276,8 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
         {/* input pro cely postup vareni */}
         <div className="flex flex-col gap-2">
           <p className={clsx("uppercase font-bold text-sm",
-            isDark ? "text-gray-400" : "text-gray-500"
+            isDark ? "text-gray-400" : "text-gray-500",
+            form.instructions.length < 10 && form.instructions.length > 0 ? "text-red-500" : isDark
           )}>
             instructions
           </p>
@@ -278,12 +302,23 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
 
       {/* cancel/save tlacitka */}
       <div className="flex flex-row justify-end gap-3">
+
+        {
+          isWarning &&
+          <p className={clsx("text-sm capitalize self-center mr-auto text-red-600 font-bold",
+            isWarning ? "inline" : "hidden"
+          )}>
+            insufficient number of characters
+          </p>
+        }
+
         <button className={clsx("font-bold outline-1 px-5 py-3 rounded-xl capitalize",
           isDark ? "bg-gray-600 text-white outline-gray-400 hover:bg-gray-700" : "bg-white text-black outline-gray-300 hover:bg-emerald-50"
         )}
           type="button"
           onClick={() => {
             setCreateRecipe(false);
+            setIsWarning(false);
             clearForm();
           }}
         >
@@ -293,23 +328,29 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
         <button className="font-bold bg-emerald-600 px-5 py-3 rounded-xl outline-2 outline-emerald-600 capitalize text-white hover:bg-white hover:text-emerald-600"
           type="button"
           onClick={() => {
-            if(isEditing){
-              setRecipes((array) => 
-                array.map((item, index) => (
-                  index === editId ? {...form} : item
-                ))
-              )
+            if(checkValidation()){
+              if(isEditing){
+                setRecipes((array) => 
+                  array.map((item, index) => (
+                    index === editId ? {...form} : item
+                  ))
+                )
+              }
+              else{
+                setRecipes((array) => [
+                  ...array,
+                  {
+                    ...form
+                  }
+                ]);
+              }
+              setCreateRecipe(false);
+              setIsWarning(false);
+              clearForm();
             }
             else{
-              setRecipes((array) => [
-                ...array,
-                {
-                  ...form
-                }
-              ]);
+              setIsWarning(true);
             }
-            setCreateRecipe(false);
-            clearForm();
           }}
         >
           {
