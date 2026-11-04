@@ -28,7 +28,10 @@ export default function Footer({isDark, recipes, setCurrentPage, currentPage} : 
         <button className={clsx(" py-2 px-4 rounded-xl  transition",
           isDark ? "bg-gray-700 hover:bg-emerald-800 text-white" : "bg-gray-200 hover:bg-emerald-100 text-black"
         )}
-        key={index}
+          key={index}
+          onClick={() => {
+            setCurrentPage(index);
+          }}
         >
           {
             index + 1
