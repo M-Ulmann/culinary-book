@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { Tag, Pencil, Trash, Clock } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
 
-export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes, recipeIndex, setSingleRecipe, setCreateRecipe, setIsEditing, setEditId} : {
+export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes, recipeIndex, setSingleRecipe, setCreateRecipe, setIsEditing, setEditId, setForm} : {
   isDark: boolean
   setViewRecipe: Dispatch<SetStateAction<boolean>>
   item: {
@@ -45,6 +45,15 @@ export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes
   setCreateRecipe: Dispatch<SetStateAction<boolean>>
   setIsEditing: Dispatch<SetStateAction<boolean>>
   setEditId: Dispatch<SetStateAction<number | null | undefined>>
+  setForm: Dispatch<SetStateAction<{
+    title: string;
+    category: string;
+    cook_time: string;
+    header_color: string;
+    short_description: string;
+    ingredients: string;
+    instructions: string;
+  }>>
 }){
 
   function deleteItem(){
@@ -83,6 +92,15 @@ export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes
               setCreateRecipe(true);
               setIsEditing(true);
               setEditId(recipeIndex);
+              setForm({
+                title: recipes[recipeIndex].title,
+                category: recipes[recipeIndex].category,
+                cook_time: recipes[recipeIndex].cook_time,
+                header_color: recipes[recipeIndex].header_color,
+                short_description: recipes[recipeIndex].short_description,
+                ingredients: recipes[recipeIndex].ingredients,
+                instructions: recipes[recipeIndex].instructions,
+              });
             }}
           >
             <Pencil size={20}/>

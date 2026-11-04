@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { SetStateAction, Dispatch, useState } from "react";
 import { tagColor } from "@/lib/tagColor";
 
-export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRecipes, isEditing, setIsEditing, editId} : {
+export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRecipes, isEditing, setIsEditing, editId, form, setForm} : {
   createRecipe: boolean
   setCreateRecipe: Dispatch<SetStateAction<boolean>>
   isDark: boolean
@@ -16,21 +16,29 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
     ingredients: string;
     instructions: string;
   }[]>>
-  
+
   isEditing: boolean
   setIsEditing: Dispatch<SetStateAction<boolean>>
   editId: number | null | undefined
+  form: {
+    title: string;
+    category: string;
+    cook_time: string;
+    header_color: string;
+    short_description: string;
+    ingredients: string;
+    instructions: string;
+  }
+  setForm: Dispatch<SetStateAction<{
+    title: string;
+    category: string;
+    cook_time: string;
+    header_color: string;
+    short_description: string;
+    ingredients: string;
+    instructions: string;
+}>>
 }) {
-
-  const [form, setForm] = useState({
-    title: "",
-    category: "",
-    cook_time: "",
-    header_color: tagColor[0], 
-    short_description: "",
-    ingredients: "",
-    instructions: ""
-  });
 
   function clearForm(){
     setForm({

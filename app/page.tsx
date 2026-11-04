@@ -10,6 +10,7 @@ import Recipe from "@/components/Recipe";
 import Footer from "@/components/Footer";
 import ShowRecipe from "@/components/ShowRecipe";
 import { Utensils } from "lucide-react";
+import { tagColor } from "@/lib/tagColor";
 
 export default function Home(){
 
@@ -27,6 +28,16 @@ export default function Home(){
     instructions: string;
   }[]>([]);
 
+  const [form, setForm] = useState({
+    title: "",
+    category: "",
+    cook_time: "",
+    header_color: tagColor[0], 
+    short_description: "",
+    ingredients: "",
+    instructions: ""
+  });
+
   const [singleRecipe, setSingleRecipe] = useState({
     title: "",
     category: "",
@@ -34,7 +45,7 @@ export default function Home(){
     short_description: "",
     ingredients: "",
     instructions: "",
-});
+  });
 
   const [isEditing, setIsEditing] = useState(false);
   const [editId, setEditId] = useState<number | null>();
@@ -92,6 +103,7 @@ export default function Home(){
                   setCreateRecipe={setCreateRecipe}
                   setIsEditing={setIsEditing}
                   setEditId={setEditId}
+                  setForm={setForm}
                 />
               );
             })
@@ -153,6 +165,8 @@ export default function Home(){
         isEditing={isEditing}
         setIsEditing={setIsEditing}
         editId={editId}
+        form={form}
+        setForm={setForm}
       />
 
       {/* ukaze samotny recept */}
