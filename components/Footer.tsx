@@ -19,23 +19,22 @@ export default function Footer({isDark, recipes, setCurrentPage, currentPage} : 
 
   function renderNavButton(){
 
-    return recipes.map((_, index) => {
-      if(index % 6 === 0){
+    const recipesByPage = recipes.filter((_, index) => {
+      return index % 6 === 0;
+    });
 
-        const pageNumber = Math.ceil(index / 6) + 1;
-
-        return(
-          <button className={clsx(" py-2 px-4 rounded-xl  transition",
-            isDark ? "bg-gray-700 hover:bg-emerald-800 text-white" : "bg-gray-200 hover:bg-emerald-100 text-black"
-          )}
-          key={pageNumber}
-          >
-            {
-              pageNumber
-            }
-          </button>
-        );
-      }
+    return recipesByPage.map((_, index) => {
+      return(
+        <button className={clsx(" py-2 px-4 rounded-xl  transition",
+          isDark ? "bg-gray-700 hover:bg-emerald-800 text-white" : "bg-gray-200 hover:bg-emerald-100 text-black"
+        )}
+        key={index}
+        >
+          {
+            index + 1
+          }
+        </button>
+      );
     })
 
   }
