@@ -16,6 +16,7 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
     ingredients: string;
     instructions: string;
   }[]>>
+  
   isEditing: boolean
   setIsEditing: Dispatch<SetStateAction<boolean>>
   editId: number | null | undefined
@@ -31,14 +32,6 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
     instructions: ""
   });
 
-  const [createTitle, setCreateTitle] = useState("");
-  const [createCategory, setCreateCategory] = useState("");
-  const [createCookTime, setCreateCookTime] = useState("");
-  const [selectedTag, setSelectedTag] = useState(0);
-  const [createShortDesc, setCreateShortDesc] = useState("");
-  const [createIngredients, setCreateIngredients] = useState("");
-  const [createInstructions, setCreateInstructions] = useState("");
-
   function clearForm(){
     setForm({
       title: "",
@@ -49,13 +42,7 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
       ingredients: "",
       instructions: ""
     });
-    setCreateTitle("");
-    setCreateCategory("");
-    setCreateCookTime("");
-    setSelectedTag(0);
-    setCreateShortDesc("");
-    setCreateIngredients("");
-    setCreateInstructions("");
+
     setIsEditing(false);
   }
 
@@ -111,13 +98,12 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
               type="text"
               placeholder="e.g. Peanut Butter And Jelly"
               onChange={(event) => {
-                setCreateTitle(event.target.value);
                 setForm((items) => ({
                   ...items,
                   title: event.target.value
-                }));
+                }));     
               }}
-              value={createTitle}
+              value={form.title}
             />
           </div>
 
@@ -134,13 +120,12 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
               type="text"
               placeholder="e.g. Breakfast, Japanese, Vegetarian..."
               onChange={(event) => {
-                setCreateCategory(event.target.value);
                 setForm((items) => ({
                   ...items,
                   category: event.target.value
                 }));
               }}
-              value={createCategory}
+              value={form.category}
             />
           </div>
         </div>
@@ -160,13 +145,12 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
               type="text"
               placeholder="e.g. 20 mins, 3 hours..."
               onChange={(event) => {
-                setCreateCookTime(event.target.value)
                 setForm((items) => ({
                   ...items,
                   cook_time: event.target.value
                 }));
               }}
-              value={createCookTime}
+              value={form.cook_time}
             />
           </div>
 
@@ -182,13 +166,12 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
                 tagColor.map((color, index) => {
                   return(
                     <button className={clsx("flex justify-center items-center w-7 h-7 rounded-full",
-                      selectedTag === index ? "opacity-70" : "opacity-100"
+                      form.header_color === color ? "opacity-70" : "opacity-100"
                     )}
                       style={{backgroundColor: color}}
                       type="button"
                       key={index}
                       onClick={() => {
-                        setSelectedTag(index);
                         setForm((items) => ({
                           ...items,
                           header_color: color
@@ -196,7 +179,7 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
                       }}
                     >
                       {
-                        selectedTag === index ? 
+                        form.header_color === color ? 
                         <Check size={20} className="text-white"/> :
                         ""
                       }
@@ -223,13 +206,12 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
             id="description"
             placeholder="Describe the dish by your own words..."
             onChange={(event) => {
-              setCreateShortDesc(event.target.value);
               setForm((items) => ({
                 ...items,
                 short_description: event.target.value
               }));
             }}
-            value={createShortDesc}
+            value={form.short_description}
           >
 
           </textarea>
@@ -250,13 +232,12 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
             id="ingredients"
             placeholder="5 liters water &#10;1 tsp salt &#10;5 kg potatoes"
             onChange={(event) => {
-              setCreateIngredients(event.target.value);
               setForm((items) => ({
                 ...items,
                 ingredients: event.target.value
               }));
             }}
-            value={createIngredients}
+            value={form.ingredients}
           >
           </textarea>
         </div>
@@ -276,13 +257,12 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
             id="instructions"
             placeholder="Step by step guide..."
             onChange={(event) => {
-              setCreateInstructions(event.target.value);
               setForm((items) => ({
                 ...items,
                 instructions: event.target.value
               }))
             }}
-            value={createInstructions}
+            value={form.instructions}
           >
           </textarea>
         </div>

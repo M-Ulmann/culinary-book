@@ -71,7 +71,6 @@ export default function Home(){
     }
 
     const splicedFilteredArray = filteredRecipes.slice(currentPage * 6, (currentPage + 1) * 6);
-    console.log(splicedFilteredArray);
 
     if(splicedFilteredArray.length > 0){
 
