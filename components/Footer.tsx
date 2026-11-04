@@ -26,8 +26,8 @@ export default function Footer({isDark, recipes, setCurrentPage, currentPage} : 
     return recipesByPage.map((_, index) => {
       return(
         <button className={clsx(" py-2 px-4 rounded-xl  transition",
-          isDark ? "bg-gray-700 hover:bg-emerald-800 text-white" : "hover:bg-emerald-100 text-black",
-          index === currentPage && "bg-emerald-500 text-white hover:text-black"
+          isDark ? " hover:bg-emerald-800 text-white" : "hover:bg-emerald-100 text-black",
+          index === currentPage && "bg-emerald-400"
         )}
           key={index}
           onClick={() => {
