@@ -9,6 +9,7 @@ import Sorter from "@/components/Sorter";
 import Recipe from "@/components/Recipe";
 import Footer from "@/components/Footer";
 import ShowRecipe from "@/components/ShowRecipe";
+import { Utensils } from "lucide-react";
 
 export default function Home(){
 
@@ -72,24 +73,49 @@ export default function Home(){
     const splicedFilteredArray = filteredRecipes.slice(currentPage * 6, (currentPage + 1) * 6);
     console.log(splicedFilteredArray);
 
-    return splicedFilteredArray.map((item, index) => {
-      return(
-        <Recipe
-          isDark={isDark}
-          setViewRecipe={setViewRecipe}
-          key={index}
-          item={item}
-          setRecipes={setRecipes}
-          recipes={recipes}
-          recipeIndex={index}
-          setSingleRecipe={setSingleRecipe}
-          ingredientList={ingredientList}
-          setCreateRecipe={setCreateRecipe}
-          setIsEditing={setIsEditing}
-          setEditId={setEditId}
-        />
+    if(splicedFilteredArray.length > 0){
+
+      return (
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 sm:grid-cols-2">
+          {
+            splicedFilteredArray.map((item, index) => {
+              return(
+                <Recipe
+                  isDark={isDark}
+                  setViewRecipe={setViewRecipe}
+                  key={index}
+                  item={item}
+                  setRecipes={setRecipes}
+                  recipes={recipes}
+                  recipeIndex={index}
+                  setSingleRecipe={setSingleRecipe}
+                  ingredientList={ingredientList}
+                  setCreateRecipe={setCreateRecipe}
+                  setIsEditing={setIsEditing}
+                  setEditId={setEditId}
+                />
+              );
+            })
+          }
+        </div>
       );
-    })
+
+    }
+
+    else{
+      return(
+        <div className={clsx("flex flex-col justify-center items-center gap-5 h-100 rounded-2xl",
+          isDark ? "bg-gray-700 text-gray-400" : "bg-gray-200 text-gray-400"
+        )}>
+          <Utensils 
+            size={150}
+          />
+          <p className="text-2xl capitalize text-center sm:text-4xl">
+            no recipes found
+          </p>
+        </div>
+      );
+    }
 
   }
 
@@ -166,13 +192,9 @@ export default function Home(){
         />
 
         {/* mrizka receptu */}
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 sm:grid-cols-2">
-
-          {
-            renderRecipe()
-          }
-
-        </div>
+        {
+          renderRecipe()
+        }
 
         {/* footer pro navigaci mezi recepty (zatim nefunkcni) */}
         <Footer

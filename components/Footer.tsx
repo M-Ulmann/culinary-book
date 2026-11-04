@@ -48,7 +48,7 @@ export default function Footer({isDark, recipes, setCurrentPage, currentPage} : 
   return(
     <footer className="flex flex-row gap-3 self-center text-2xl">
       {/* tlacitko zpet */}
-      <button className={clsx("p-3 rounded-xl hover:bg-emerald-500 hover:text-white transition disabled:!cursor-not-allowed disabled:hover:bg-emerald-100 disabled:hover:text-black",
+      <button className={clsx("p-3 rounded-xl hover:bg-emerald-500 hover:text-white transition disabled:cursor-not-allowed! disabled:hover:bg-emerald-100 disabled:hover:text-black",
         isDark ? "text-white" : "text-black",
       )}
         onClick={() => {
@@ -68,7 +68,7 @@ export default function Footer({isDark, recipes, setCurrentPage, currentPage} : 
       }
 
       {/* tlacitko dopredu */}
-      <button className={clsx("p-3 rounded-xl hover:bg-emerald-500 hover:text-white transition disabled:!cursor-not-allowed disabled:hover:bg-emerald-100 disabled:hover:text-black",
+      <button className={clsx("p-3 rounded-xl hover:bg-emerald-500 hover:text-white transition disabled:cursor-not-allowed! disabled:hover:bg-emerald-100 disabled:hover:text-black",
         isDark ? "text-white" : "text-black"
       )}
       onClick={() => {
