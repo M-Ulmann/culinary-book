@@ -16,6 +16,30 @@ export default function Footer({isDark, recipes, setCurrentPage, currentPage} : 
   setCurrentPage: Dispatch<SetStateAction<number>>
   currentPage: number
 }){
+
+  function renderNavButton(){
+
+    return recipes.map((_, index) => {
+      if(index % 6 === 0){
+
+        const pageNumber = Math.ceil(index / 6) + 1;
+
+        return(
+          <button className={clsx(" py-2 px-4 rounded-xl  transition",
+            isDark ? "bg-gray-700 hover:bg-emerald-800 text-white" : "bg-gray-200 hover:bg-emerald-100 text-black"
+          )}
+          key={pageNumber}
+          >
+            {
+              pageNumber
+            }
+          </button>
+        );
+      }
+    })
+
+  }
+
   return(
     <footer className="flex flex-row gap-3 self-center text-2xl">
       {/* tlacitko zpet */}
@@ -33,21 +57,8 @@ export default function Footer({isDark, recipes, setCurrentPage, currentPage} : 
 
       {/* navigace mezi recepty */}
       {
-        
+        renderNavButton()
       }
-      <button className={clsx(" py-2 px-4 rounded-xl  transition",
-        isDark ? "bg-gray-700 hover:bg-emerald-800 text-white" : "bg-gray-200 hover:bg-emerald-100 text-black"
-      )}
-      >
-        1
-      </button>
-
-      <button className={clsx(" py-2 px-4 rounded-xl  transition",
-        isDark ? "bg-gray-700 hover:bg-emerald-800 text-white" : "bg-gray-200 hover:bg-emerald-100 text-black"
-      )}
-      >
-        2
-      </button>
 
       {/* tlacitko dopredu */}
       <button className={clsx("p-3 rounded-xl hover:bg-emerald-500 hover:text-white transition",
