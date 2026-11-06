@@ -8,6 +8,7 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
   setCreateRecipe: Dispatch<SetStateAction<boolean>>
   isDark: boolean
   setRecipes: Dispatch<SetStateAction<{
+    id: string;
     title: string;
     category: string;
     cook_time: string;
@@ -332,7 +333,7 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
               if(isEditing){
                 setRecipes((array) => 
                   array.map((item, index) => (
-                    index === editId ? {...form} : item
+                    index === editId ? {...form, id: crypto.randomUUID()} : item
                   ))
                 )
               }
@@ -340,6 +341,7 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
                 setRecipes((array) => [
                   ...array,
                   {
+                    id: crypto.randomUUID(),
                     ...form
                   }
                 ]);

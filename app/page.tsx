@@ -19,6 +19,7 @@ export default function Home(){
   const [createRecipe, setCreateRecipe] = useState(false);
   const [viewRecipe, setViewRecipe] = useState(false);
   const [recipes, setRecipes] = useState<{
+    id: string
     title: string;
     category: string;
     cook_time: string;
@@ -64,7 +65,7 @@ export default function Home(){
     return splitArray;
   }
 
-  function renderRecipe(){
+  function sortedRecipes(){
     let filteredRecipes;
 
     if(categoryContent === "ALL"){
@@ -81,19 +82,24 @@ export default function Home(){
       })
     }
 
-    const splicedFilteredArray = filteredRecipes.slice(currentPage * 6, (currentPage + 1) * 6);
+    return filteredRecipes.slice(currentPage * 6, (currentPage + 1) * 6);
+  }
 
-    if(splicedFilteredArray.length > 0){
+  function renderRecipe(){
+    
+    console.log(sortedRecipes());
+
+    if(sortedRecipes().length > 0){
 
       return (
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 sm:grid-cols-2">
           {
-            splicedFilteredArray.map((item, index) => {
+            sortedRecipes().map((item, index) => {
               return(
                 <Recipe
                   isDark={isDark}
                   setViewRecipe={setViewRecipe}
-                  key={index}
+                  key={item.id}
                   item={item}
                   setRecipes={setRecipes}
                   recipes={recipes}
@@ -104,6 +110,7 @@ export default function Home(){
                   setIsEditing={setIsEditing}
                   setEditId={setEditId}
                   setForm={setForm}
+                  sortedRecipes={sortedRecipes}
                 />
               );
             })
