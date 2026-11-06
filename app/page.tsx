@@ -49,7 +49,7 @@ export default function Home(){
   });
 
   const [isEditing, setIsEditing] = useState(false);
-  const [editId, setEditId] = useState<number | null>();
+  const [editId, setEditId] = useState<string | null>();
 
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -94,7 +94,7 @@ export default function Home(){
       return (
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 sm:grid-cols-2">
           {
-            sortedRecipes().map((item, index) => {
+            sortedRecipes().map((item) => {
               return(
                 <Recipe
                   isDark={isDark}
@@ -103,7 +103,7 @@ export default function Home(){
                   item={item}
                   setRecipes={setRecipes}
                   recipes={recipes}
-                  recipeIndex={index}
+                  recipeId={item.id}
                   setSingleRecipe={setSingleRecipe}
                   ingredientList={ingredientList}
                   setCreateRecipe={setCreateRecipe}

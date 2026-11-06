@@ -2,10 +2,11 @@ import clsx from "clsx";
 import { Tag, Pencil, Trash, Clock } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
 
-export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes, recipeIndex, setSingleRecipe, setCreateRecipe, setIsEditing, setEditId, setForm, sortedRecipes} : {
+export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes, recipeId, setSingleRecipe, setCreateRecipe, setIsEditing, setEditId, setForm} : {
   isDark: boolean
   setViewRecipe: Dispatch<SetStateAction<boolean>>
   item: {
+    id: string
     title: string
     category: string
     cook_time: string
@@ -34,7 +35,7 @@ export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes
     ingredients: string;
     instructions: string;
 }[]
-  recipeIndex: number
+  recipeId: string
   setSingleRecipe: Dispatch<SetStateAction<{
     title: string;
     category: string;
@@ -46,7 +47,7 @@ export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes
   ingredientList: () => string[]
   setCreateRecipe: Dispatch<SetStateAction<boolean>>
   setIsEditing: Dispatch<SetStateAction<boolean>>
-  setEditId: Dispatch<SetStateAction<number | null | undefined>>
+  setEditId: Dispatch<SetStateAction<string | null | undefined>>
   setForm: Dispatch<SetStateAction<{
     title: string;
     category: string;
@@ -69,16 +70,22 @@ export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes
 
   {/* OPRAVIT ZE SORTED ITEMU MAZANI A CELKOVE SORT FIXNOUT */}
 
+  const specificRecipe = recipes.find((specificItem) => {
+    return specificItem.id === recipeId;
+  })
+
   function deleteItem(){
-    const deletedItem = recipes.filter((_, index) => {
-      return index !== recipeIndex
+    const deletedItem = recipes.filter((item) => {
+      return item.id !== recipeId
     });
     setRecipes(deletedItem);
   }
 
   function ingredientCount(){
-    const numberIngredients = recipes[recipeIndex].ingredients.split("\n").length;
-    return numberIngredients;
+    if(specificRecipe){
+      const numberIngredients = specificRecipe.ingredients.split("\n").length;
+      return numberIngredients;
+    }
   }
 
   return(
@@ -102,18 +109,20 @@ export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes
         <div className="flex flex-row gap-3 items-center bg-black/30 text-white px-2 py-1 rounded-md uppercase">
           <button className="hover:text-amber-400"
             onClick={() => {
-              setCreateRecipe(true);
-              setIsEditing(true);
-              setEditId(recipeIndex);
-              setForm({
-                title: sortedRecipes()[recipeIndex].title,
-                category: sortedRecipes()[recipeIndex].category,
-                cook_time: sortedRecipes()[recipeIndex].cook_time,
-                header_color: sortedRecipes()[recipeIndex].header_color,
-                short_description: sortedRecipes()[recipeIndex].short_description,
-                ingredients: sortedRecipes()[recipeIndex].ingredients,
-                instructions: sortedRecipes()[recipeIndex].instructions,
-              });
+              if(specificRecipe){
+                setCreateRecipe(true);
+                setIsEditing(true);
+                setEditId(recipeId);
+                setForm({
+                  title: specificRecipe.title,
+                  category: specificRecipe.category,
+                  cook_time: specificRecipe.cook_time,
+                  header_color: specificRecipe.header_color,
+                  short_description: specificRecipe.short_description,
+                  ingredients: specificRecipe.ingredients,
+                  instructions: specificRecipe.instructions,
+                });
+              }
             }}
           >
             <Pencil size={20}/>
@@ -171,8 +180,10 @@ export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes
         {/* tlacitko ukaze recept */}
         <button className="bg-black py-3 text-white font-bold uppercase tracking-wider rounded-xl text-sm hover:bg-emerald-600 transition"
           onClick={() => {
-            setViewRecipe(true);
-            setSingleRecipe(recipes[recipeIndex]);
+            if(specificRecipe){
+              setSingleRecipe(specificRecipe);
+              setViewRecipe(true);
+            }
           }}
         >
           view details

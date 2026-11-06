@@ -20,7 +20,7 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
 
   isEditing: boolean
   setIsEditing: Dispatch<SetStateAction<boolean>>
-  editId: number | null | undefined
+  editId: string | null | undefined
   form: {
     title: string;
     category: string;
@@ -38,7 +38,7 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
     short_description: string;
     ingredients: string;
     instructions: string;
-}>>
+  }>>
 }) {
 
   const [isWarning, setIsWarning] = useState<boolean>(false);
@@ -332,8 +332,8 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
             if(checkValidation()){
               if(isEditing){
                 setRecipes((array) => 
-                  array.map((item, index) => (
-                    index === editId ? {...form, id: crypto.randomUUID()} : item
+                  array.map((item) => (
+                    item.id === editId ? {...form, id: crypto.randomUUID()} : item
                   ))
                 )
               }
