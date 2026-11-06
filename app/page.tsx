@@ -80,16 +80,20 @@ export default function Home(){
 
         return matchCategory && matchSearchValue;
       })
+
+      if(filteredRecipes.length === 0){
+        filteredRecipes = recipes && recipes.filter((item) => {
+          return item.title.toLowerCase().includes(searchValue.toLowerCase());
+        });
+      }
     }
 
     return filteredRecipes.slice(currentPage * 6, (currentPage + 1) * 6);
   }
 
   function renderRecipe(){
-    
-    console.log(sortedRecipes());
 
-    if(sortedRecipes().length > 0){
+    if(recipes.length > 0){
 
       return (
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 sm:grid-cols-2">
@@ -110,7 +114,6 @@ export default function Home(){
                   setIsEditing={setIsEditing}
                   setEditId={setEditId}
                   setForm={setForm}
-                  sortedRecipes={sortedRecipes}
                 />
               );
             })

@@ -55,7 +55,6 @@ export default function Footer({isDark, recipes, setCurrentPage, currentPage} : 
           if(currentPage > 0){
             setCurrentPage(currentPage - 1)
           }
-          console.log(currentPage);
         }}
         disabled={currentPage === 0}
       >
@@ -76,7 +75,7 @@ export default function Footer({isDark, recipes, setCurrentPage, currentPage} : 
           setCurrentPage(currentPage + 1)
         }
       }}
-      disabled={currentPage === maxPage}
+      disabled={currentPage === maxPage || recipes.length === 0}
       >
         <ArrowRight/>
       </button>

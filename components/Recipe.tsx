@@ -24,7 +24,7 @@ export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes
     short_description: string;
     ingredients: string;
     instructions: string;
-}[]>>
+  }[]>>
   recipes: {
     id: string
     title: string;
@@ -34,7 +34,7 @@ export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes
     short_description: string;
     ingredients: string;
     instructions: string;
-}[]
+  }[]
   recipeId: string
   setSingleRecipe: Dispatch<SetStateAction<{
     title: string;
@@ -43,7 +43,7 @@ export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes
     short_description: string;
     ingredients: string;
     instructions: string;
-}>>
+  }>>
   ingredientList: () => string[]
   setCreateRecipe: Dispatch<SetStateAction<boolean>>
   setIsEditing: Dispatch<SetStateAction<boolean>>
@@ -57,18 +57,8 @@ export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes
     ingredients: string;
     instructions: string;
   }>>
-  sortedRecipes: () => {
-    title: string;
-    category: string;
-    cook_time: string;
-    header_color: string;
-    short_description: string;
-    ingredients: string;
-    instructions: string;
-  }[]
-}){
 
-  {/* OPRAVIT ZE SORTED ITEMU MAZANI A CELKOVE SORT FIXNOUT */}
+}){
 
   const specificRecipe = recipes.find((specificItem) => {
     return specificItem.id === recipeId;
@@ -79,6 +69,7 @@ export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes
       return item.id !== recipeId
     });
     setRecipes(deletedItem);
+
   }
 
   function ingredientCount(){

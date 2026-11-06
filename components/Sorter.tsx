@@ -52,17 +52,21 @@ export default function Sorter({isDark, recipes, setPressedCategory, pressedCate
         isDark ? "text-white" : "text-black"
       )}>
 
-        <button className={clsx("font-bold px-3 py-1 rounded-xl text-sm transition uppercase not",
-          pressedCategory === -1 ? "bg-emerald-400" : 
-            isDark ? "bg-slate-900" : "bg-gray-100"
-        )}
-          onClick={() => {
-            setPressedCategory(-1);
-            setCategoryContent("ALL");
-          }}
-        >
-          ALL
-        </button>
+        {
+          recipes.length > 0 &&
+          <button className={clsx("font-bold px-3 py-1 rounded-xl text-sm transition uppercase not",
+            pressedCategory === -1 ? "bg-emerald-400" : 
+              isDark ? "bg-slate-900" : "bg-gray-100"
+          )}
+            onClick={() => {
+              setPressedCategory(-1);
+              setCategoryContent("ALL");
+            }}
+          >
+            ALL
+          </button>
+        }
+
 
         {
           dupelessCategories.map((item, index) => {
