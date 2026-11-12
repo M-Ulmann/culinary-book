@@ -35,7 +35,7 @@ export default function Footer({isDark, recipes, setCurrentPage, currentPage, so
 
     return recipesByPage.map((_, index) => {
       return(
-        <button className={clsx(" py-2 px-4 rounded-xl  transition",
+        <button className={clsx("py-2 px-4 rounded-xl transition",
           isDark ? " hover:bg-emerald-800 text-white" : "hover:bg-emerald-100 text-black",
           index === currentPage && "bg-emerald-400"
         )}
@@ -52,12 +52,9 @@ export default function Footer({isDark, recipes, setCurrentPage, currentPage, so
     })
   }
 
-  const maxPage = Math.ceil(sortedRecipes().length / 6) - 1;
-
-  return(
-    <footer className="flex flex-row gap-3 self-center text-2xl">
-      {/* tlacitko zpet */}
-      <button className={clsx("p-3 rounded-xl hover:bg-emerald-500 hover:text-white transition disabled:cursor-not-allowed! disabled:hover:bg-emerald-100 disabled:hover:text-black",
+  function leftButton(){
+    return(
+      <button className={clsx("p-3 rounded-xl order-1 sm:order-0 hover:bg-emerald-500 hover:text-white transition disabled:cursor-not-allowed! disabled:hover:bg-emerald-100 disabled:hover:text-black",
         isDark ? "text-white" : "text-black",
       )}
         onClick={() => {
@@ -69,14 +66,12 @@ export default function Footer({isDark, recipes, setCurrentPage, currentPage, so
       >
         <ArrowLeft/>
       </button>
+    );
+  }
 
-      {/* navigace mezi recepty */}
-      {
-        renderNavButton()
-      }
-
-      {/* tlacitko dopredu */}
-      <button className={clsx("p-3 rounded-xl hover:bg-emerald-500 hover:text-white transition disabled:cursor-not-allowed! disabled:hover:bg-emerald-100 disabled:hover:text-black",
+  function rightButton(){
+    return(
+      <button className={clsx("p-3 rounded-xl order-1 hover:bg-emerald-500 hover:text-white transition disabled:cursor-not-allowed! disabled:hover:bg-emerald-100 disabled:hover:text-black",
         isDark ? "text-white" : "text-black"
       )}
       onClick={() => {
@@ -88,6 +83,59 @@ export default function Footer({isDark, recipes, setCurrentPage, currentPage, so
       >
         <ArrowRight/>
       </button>
+    );
+  }
+
+  const maxPage = Math.ceil(sortedRecipes().length / 6) - 1;
+
+  return(
+    <footer className="flex flex-row self-center justify-center text-2xl">
+
+      {/* tlacitka pro PC */}
+      <div className="sm:flex hidden flex-row items-center gap-2">
+        {/* tlacitko zpet */}
+        {
+          leftButton()
+        }
+
+        {/* navigace mezi recepty */}
+        {
+          renderNavButton()
+        }
+
+        {/* tlacitko dopredu */}
+        {
+          rightButton()
+        }
+      </div>
+
+      {/* tlacitka pro mobily */}
+      <div className="sm:hidden flex flex-col gap-3 items-center">
+
+        <div className="flex flex-wrap gap-3 items-center justify-center">
+          {/* navigace mezi recepty */}
+          {
+            renderNavButton()
+          }
+        </div>
+
+        <div className="flex gap-3">
+
+          {/* tlacitko zpet */}
+          {
+            leftButton()
+          }
+
+          {/* tlacitko dopredu */}
+          {
+            rightButton()
+          }
+
+        </div>
+
+      </div>
+
+      
     </footer>
   );
 }
