@@ -69,7 +69,7 @@ export default function Home(){
     let filteredRecipes;
 
     if(categoryContent === "ALL"){
-      filteredRecipes = recipes && recipes.filter((item) => {
+      return filteredRecipes = recipes && recipes.filter((item) => {
         return item.title.toLowerCase().includes(searchValue.toLowerCase());
       });
     }
@@ -82,13 +82,13 @@ export default function Home(){
       })
 
       if(filteredRecipes.length === 0){
-        filteredRecipes = recipes && recipes.filter((item) => {
+        return filteredRecipes = recipes && recipes.filter((item) => {
           return item.title.toLowerCase().includes(searchValue.toLowerCase());
         });
       }
-    }
 
-    return filteredRecipes.slice(currentPage * 6, (currentPage + 1) * 6);
+      return filteredRecipes;
+    }
   }
 
   function renderRecipe(){
@@ -98,7 +98,7 @@ export default function Home(){
       return (
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 sm:grid-cols-2">
           {
-            sortedRecipes().map((item) => {
+            sortedRecipes().slice(currentPage * 6, (currentPage + 1) * 6).map((item) => {
               return(
                 <Recipe
                   isDark={isDark}
@@ -114,6 +114,8 @@ export default function Home(){
                   setIsEditing={setIsEditing}
                   setEditId={setEditId}
                   setForm={setForm}
+                  setCurrentPage={setCurrentPage}
+                  currentPage={currentPage}
                 />
               );
             })
@@ -212,6 +214,7 @@ export default function Home(){
           setCategoryContent={setCategoryContent}
           searchValue={searchValue}
           setSearchValue={setSearchValue}
+          setCurrentPage={setCurrentPage}
         />
 
         {/* mrizka receptu */}
@@ -225,6 +228,7 @@ export default function Home(){
           recipes={recipes}
           setCurrentPage={setCurrentPage}
           currentPage={currentPage}
+          sortedRecipes={sortedRecipes}
         />
 
       </main>

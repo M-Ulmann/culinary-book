@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
 
-export default function Footer({isDark, recipes, setCurrentPage, currentPage} : {
+export default function Footer({isDark, recipes, setCurrentPage, currentPage, sortedRecipes} : {
   isDark: boolean
   recipes: {
     title: string;
@@ -15,11 +15,21 @@ export default function Footer({isDark, recipes, setCurrentPage, currentPage} : 
 }[]
   setCurrentPage: Dispatch<SetStateAction<number>>
   currentPage: number
+  sortedRecipes: () => {
+    id: string;
+    title: string;
+    category: string;
+    cook_time: string;
+    header_color: string;
+    short_description: string;
+    ingredients: string;
+    instructions: string;
+}[]
 }){
 
   function renderNavButton(){
 
-    const recipesByPage = recipes.filter((_, index) => {
+    const recipesByPage = sortedRecipes().filter((_, index) => {
       return index % 6 === 0;
     });
 
@@ -40,10 +50,9 @@ export default function Footer({isDark, recipes, setCurrentPage, currentPage} : 
         </button>
       );
     })
-
   }
 
-  const maxPage = Math.ceil(recipes.length / 6) - 1;
+  const maxPage = Math.ceil(sortedRecipes().length / 6) - 1;
 
   return(
     <footer className="flex flex-row gap-3 self-center text-2xl">
