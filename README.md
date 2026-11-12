@@ -1,7 +1,10 @@
 # Culinary Book
 Jeden z mých největších projektů zatím.
-Celkový development trval něco v rozmezí 60-70 hodin.
+
+Celkový development trval něco v rozmezí 50-60 hodin.
+
 Stránku jsem se snažil vytvořit bez většího používání AI (žádný vibecoding).
+
 AI bylo použité maximálně v případě vyhledávání funkcí nebo když jsem už fakt nevěděl
 
 ## O čem to je?
