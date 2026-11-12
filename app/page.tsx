@@ -116,6 +116,7 @@ export default function Home(){
                   setForm={setForm}
                   setCurrentPage={setCurrentPage}
                   currentPage={currentPage}
+                  sortedRecipes={sortedRecipes}
                 />
               );
             })
