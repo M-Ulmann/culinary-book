@@ -117,6 +117,8 @@ export default function Home(){
                   setCurrentPage={setCurrentPage}
                   currentPage={currentPage}
                   sortedRecipes={sortedRecipes}
+                  setPressedCategory={setPressedCategory}
+                  setSearchValue={setSearchValue}
                 />
               );
             })

@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { Tag, Pencil, Trash, Clock } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
 
-export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes, recipeId, setSingleRecipe, setCreateRecipe, setIsEditing, setEditId, setForm, setCurrentPage, currentPage, sortedRecipes} : {
+export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes, recipeId, setSingleRecipe, setCreateRecipe, setIsEditing, setEditId, setForm, setCurrentPage, currentPage, sortedRecipes, setPressedCategory, setSearchValue} : {
   isDark: boolean
   setViewRecipe: Dispatch<SetStateAction<boolean>>
   item: {
@@ -68,7 +68,9 @@ export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes
     short_description: string;
     ingredients: string;
     instructions: string;
-}[]
+  }[]
+  setPressedCategory: Dispatch<SetStateAction<number>>
+  setSearchValue: Dispatch<SetStateAction<string>>
 }){
 
   const specificRecipe = recipes.find((specificItem) => {
@@ -81,8 +83,12 @@ export default function Recipe({isDark, setViewRecipe, item, setRecipes, recipes
     });
     setRecipes(deletedItem);
 
-    if(sortedRecipes().length % 6 === 1){
+    if(sortedRecipes().length % 6 === 1 && sortedRecipes().length > 1){
       setCurrentPage(currentPage - 1)
+    }
+    else if(sortedRecipes().length % 6 === 1 && sortedRecipes().length === 1){
+      setPressedCategory(-1);
+      setSearchValue("");
     }
   }
 
