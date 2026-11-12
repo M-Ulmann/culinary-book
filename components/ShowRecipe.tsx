@@ -68,7 +68,7 @@ export default function ShowRecipe({isDark, setViewRecipe, viewRecipe, singleRec
             ingredients
           </h4>
 
-          <ul className="grid grid-cols-2 gap-3 list-disc list-inside marker:text-2xl ">
+          <ul className="grid grid-cols-2 gap-3 list-disc list-inside marker:text-2xl">
             {
               ingredientList().map((ingredient, index) => {
                 return(

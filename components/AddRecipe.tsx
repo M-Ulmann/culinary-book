@@ -154,6 +154,11 @@ export default function AddRecipe({createRecipe, setCreateRecipe, isDark, setRec
                   category: event.target.value
                 }));
               }}
+              onKeyDown={(event) => {
+                if(event.key === " "){
+                  event.preventDefault();
+                }
+              }}
               value={form.category}
             />
           </div>
